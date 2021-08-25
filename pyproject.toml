@@ -1,0 +1,86 @@
+[tool.poetry]
+name = "pypj"
+version = "0.2.2"
+description = "Python project initializer"
+authors = ["edge-minato <edge.minato@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/edge-minato/pypj"
+keywords = ["packaging", "developent", "environment", "poetry"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Unix",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+[tool.poetry.dependencies]
+python = "^3.7"
+single-source = "^0.2.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+black = "^21.7b0"
+pyproject-flake8 = "^0.0.1-alpha.2"
+mypy = "^0.910"
+isort = "^5.9.3"
+pytest-cov = "^2.12.1"
+pytest-mock = "^3.6.1"
+tox = "^3.24.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+pypj = "pypj.main:main"
+
+[tool.flake8]
+max-line-length = 119
+max-complexity = 10
+
+[tool.black]
+line-length = 119
+exclude = '''
+(
+    migrations
+    | .mypy_cache
+    | .pytest_cache
+    | .tox
+    | venv
+)
+'''
+
+[tool.mypy]
+# common
+python_version = 3.7
+show_column_numbers	 = true
+show_error_context = true
+ignore_missing_imports = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+# warning
+warn_return_any = true
+warn_unused_configs = true
+warn_redundant_casts = true
+
+[tool.isort]
+profile = "black"
+line_length = 119
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+skipsdist = true
+envlist = py37, py38, py39
+
+[testenv]
+whitelist_externals = poetry
+commands =
+    poetry install -v
+    poetry run pytest -v --cov=pypj
+"""
