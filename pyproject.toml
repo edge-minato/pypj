@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pypj"
-version = "0.2.3"
+version = "0.2.4"
 description = "Python project initializer"
 authors = ["edge-minato <edge.minato@gmail.com>"]
 license = "MIT"
