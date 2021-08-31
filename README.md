@@ -1,5 +1,3 @@
-# pypj
-
 ```txt
 ┌─┐┬ ┬┌─┐┬
 ├─┘└┬┘├─┘│
@@ -7,6 +5,12 @@
 ```
 
 pypj is a command that initializes a modern python project.
+
+## Installation
+
+```sh
+pip install pypj
+```
 
 ## Usage
 
