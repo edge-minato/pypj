@@ -1,4 +1,4 @@
-from .const import ASCII_ART, VERSION  # noqa
+from .const import VERSION
 from .environment import Environment, Platform, Version  # noqa
 from .exception import Emsg, PypjError  # noqa
 

@@ -1,0 +1,51 @@
+# The original unittest workflow is useful as references
+# https://github.com/python-poetry/poetry/blob/master/.github/workflows/main.yml
+
+name: Unittest
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+jobs:
+  build:
+    runs-on: ${{matrix.platform}}
+    strategy:
+      matrix:
+        platform: [ubuntu-latest]
+        python-version: [PYTHON_VERSION]
+    steps:
+      - uses: actions/checkout@v2
+      - run: git branch
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Bootstrap poetry
+        shell: bash
+        run: |
+          curl -sL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py \
+            | python - -y
+      - name: Update PATH
+        shell: bash
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: Configure poetry
+        shell: bash
+        run: poetry config virtualenvs.in-project true
+      - name: Install dependencies
+        shell: bash
+        run: poetry install
+      - name: Test with tox
+        run: poetry run pytest -v --cov=pypj --cov-branch --cov-report=xml
+      #- name: Upload coverage to Codecov
+      #  if: ${{ matrix.python-version==PYTHON_VERSION }}
+      #  uses: codecov/codecov-action@v1
+      #  with:
+      #    token: ${{ secrets.CODECOV_TOKEN }}
+      #    file: ./coverage.xml
+      #    name: codecov-umbrella
+      #    fail_ci_if_error: true

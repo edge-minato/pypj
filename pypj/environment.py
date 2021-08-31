@@ -3,12 +3,14 @@ This file provides environment information and prerequisite checker.
 """
 import platform
 import shutil
+import sys
 from dataclasses import dataclass
 from enum import Enum, auto
 from subprocess import PIPE, run
 from typing import Optional
 
-from .exception import Emsg, PypjError
+from .const import POETRY_INSTALL_GUIDE
+from .cui import ask_yN
 
 
 @dataclass
@@ -48,11 +50,7 @@ class Environment(object):
         self.os: Platform = self.get_os()
         self.python: Version = self.get_python()
         self.poetry: Optional[Version] = self.get_poetry()
-
-    def show(self) -> None:
-        print(f"python : {self.python}")
-        print(f"poetry : {self.poetry}")
-        print()
+        self.warn_if_windows()
 
     def get_os(self) -> Platform:
         pf = platform.system()
@@ -74,5 +72,15 @@ class Environment(object):
             return None
         r = run(POETRY_VER, shell=True, stdout=PIPE, stderr=PIPE, text=True)
         if r.returncode != 0:
-            raise PypjError(Emsg.FAILED_GET_POETRY_VER)
+            print("Error: Poetry was not found.")
+            print("Please install poetry first.")
+            print(f"Reference: {POETRY_INSTALL_GUIDE}")
+            sys.exit(1)
         return Version(r.stdout.split()[2])  # "Poetry version 1.1.7"
+
+    def warn_if_windows(self) -> None:
+        if self.os is not Platform.UNIX:
+            print("This operating system is not supported but you can try.")
+            if not ask_yN("Do you want to proceed? (y/N): "):
+                print("Canceld.")
+                sys.exit(0)
