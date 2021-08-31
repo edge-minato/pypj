@@ -1,8 +1,9 @@
-```txt
-┌─┐┬ ┬┌─┐┬
-├─┘└┬┘├─┘│
-┴   ┴ ┴ └┘
-```
+![Pypj Logo](doc/img/logo.png)
+
+[![pypi version](https://img.shields.io/pypi/v/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
+[![python versions](https://img.shields.io/pypi/pyversions/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
+[![format](https://img.shields.io/pypi/format/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
+[![license](https://img.shields.io/pypi/l/pypj.svg?style=flat)](https://github.com/edge-minato/pypj/blob/master/LICENSE)
 
 pypj is a command that initializes a modern python project.
 
@@ -16,10 +17,6 @@ pip install pypj
 
 ```
 $ pypj
-
-┌─┐┬ ┬┌─┐┬
-├─┘└┬┘├─┘│    python : 3.8.5
-┴   ┴ ┴ └┘    poetry : 1.1.7
 
 Package name: my-package
 Do you want to use customized setting? (y/N): N
