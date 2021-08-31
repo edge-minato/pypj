@@ -1,4 +1,4 @@
-![Pypj Logo](doc/img/logo.png)
+![Pypj Logo](https://raw.githubusercontent.com/edge-minato/pypj/main/doc/img/logo.png)
 
 [![pypi version](https://img.shields.io/pypi/v/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
 [![python versions](https://img.shields.io/pypi/pyversions/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
