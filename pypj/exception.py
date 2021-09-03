@@ -1,6 +1,10 @@
 from enum import Enum
 
 
+class Message(object):
+    pass
+
+
 class Emsg(Enum):
     OS_NOT_SUPPORTED = "Pypj only supports unix system."
     PIP_NOT_FOUND = "pip is not installed."
@@ -8,7 +12,8 @@ class Emsg(Enum):
     FAILED_POETRY_NEW = "Failed to 'poetry new'."
     FAILED_POETRY_CONFIG = "Failed to configure poetry."
     FAILED_POETRY_ADD = "Failed to add package via poetry."
-    RESOURCE_NOT_FOUND = "settings.jsonc does not found. Please report this issue."
+    RESOURCE_NOT_FOUND = "Resource does not exist. Please report this issue."
+    PACKAGE_NOT_FOUND = "The target package does not exist."
 
     def __str__(self) -> str:
         return self.name

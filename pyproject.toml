@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pypj"
-version = "0.2.4"
+version = "0.3.1"
 description = "Python project initializer"
 authors = ["edge-minato <edge.minato@gmail.com>"]
 license = "MIT"
@@ -31,6 +31,7 @@ isort = "^5.9.3"
 pytest-cov = "^2.12.1"
 pytest-mock = "^3.6.1"
 tox = "^3.24.3"
+tox-gh-actions = "^2.6.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -51,7 +52,8 @@ exclude = '''
     | .mypy_cache
     | .pytest_cache
     | .tox
-    | venv
+    | .venv
+    | dist
 )
 '''
 
@@ -75,12 +77,22 @@ line_length = 119
 [tool.tox]
 legacy_tox_ini = """
 [tox]
+envlist = py37, py38, py39, flake8, black, mypy, isort
 skipsdist = true
-envlist = py37, py38, py39
-
+isolated_build = true
+skip_missing_interpreters = true
 [testenv]
 whitelist_externals = poetry
+require_locked_deps = true
+install_dev_deps = true
 commands =
-    poetry install -v
-    poetry run pytest -v --cov=pypj
+    poetry run pytest -v --cov=pypj --cov-branch
+[testenv:flake8]
+commands = poetry run pflake8 ./pypj
+[testenv:black]
+commands = poetry run black ./pypj
+[testenv:mypy]
+commands = poetry run mypy ./pypj
+[testenv:isort]
+commands = poetry run isort ./pypj
 """

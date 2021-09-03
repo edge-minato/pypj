@@ -4,8 +4,59 @@
 [![python versions](https://img.shields.io/pypi/pyversions/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
 [![format](https://img.shields.io/pypi/format/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
 [![license](https://img.shields.io/pypi/l/pypj.svg?style=flat)](https://github.com/edge-minato/pypj/blob/master/LICENSE)
+[![Unittest](https://github.com/edge-minato/pypj/actions/workflows/unittest.yml/badge.svg)](https://github.com/edge-minato/pypj/actions/workflows/unittest.yml)
+[![codecov](https://codecov.io/gh/edge-minato/pypj/branch/main/graph/badge.svg?token=YDZAMKUNS0)](https://codecov.io/gh/edge-minato/pypj)
+[![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black")
 
-pypj is a command that initializes a modern python project.
+`Pypj` provides you an initialized modern python project. All the basic dev package installations, their configurations, and test workflows will be done, so we can focus on coding. All you have to do is install `poetry` and hit `pypj`, name your project.
+
+## What will be provided
+
+The _"Modern"_ project settings `Pypj` suggests is following. We understand some developers prefer another tools, and you can remove or customize the packages to be installed.
+
+### Environment
+
+- Package manager: [`poetry`](https://github.com/python-poetry/poetry)
+- Formatter: [`black`](https://github.com/psf/black)
+- Linter: [`pflake8`](https://github.com/csachs/pyproject-flake8)
+- Type linter: [`mypy`](https://github.com/python/mypy)
+- Import formatter: [`isort`](https://github.com/PyCQA/isort)
+- Test framework:
+  - [`pytest`](https://github.com/pytest-dev/pytest)
+    - [`pytest-cov`](https://github.com/pytest-dev/pytest-cov)
+    - [`pytest-mock`](https://github.com/pytest-dev/pytest-mock)
+  - [`tox`](https://github.com/tox-dev/tox)
+    - [`tox-gh-actions`](https://github.com/ymyzk/tox-gh-actions)
+
+### Coding format
+
+- Max line length: `119` as default
+- Type hinting: `required`
+- And some detailed configures
+
+### Other features
+
+- Single filed configurations on `pyproject.toml`
+- Single sourced versioning: [`single-source`](https://github.com/rabbit72/single-source)
+- Command alias: [`make`](https://www.gnu.org/software/make/)
+
+### Directory structure
+
+Do you think the directory tree looks poor? Because all configurations are aggregated in `pyproject.toml`, we don't need any tool specific configuration files.
+
+```
+$ tree -a -L 1
+my-package/
+├── .github
+├── .venv
+├── .vscode
+├── Makefile
+├── README.md
+├── my-package
+├── poetry.lock
+├── pyproject.toml
+└── tests
+```
 
 ## Installation
 
@@ -18,63 +69,48 @@ pip install pypj
 ```
 $ pypj
 
+┌─┐┬ ┬┌─┐┬
+├─┘└┬┘├─┘│    python : 3.8.5
+┴   ┴ ┴ └┘    poetry : 1.1.7
+
 Package name: my-package
-Do you want to use customized setting? (y/N): N
+Do you want to custom setting? (y/N):
+Task: Initialize package: my-package
   Command: poetry new my-package ✨
+  Poetry new done 🚀
   Command: poetry config virtualenvs.in-project true ✨
-Initialize done 🚀
-  Create : .vscode directory ✨
-  Create : .vscode/settings.json ✨
   Command: poetry add -D black ✨
   Command: poetry add -D pyproject-flake8 ✨
   Command: poetry add -D mypy ✨
   Command: poetry add -D isort ✨
   Command: poetry add -D pytest ✨
+  Command: poetry add -D tox ✨
   Command: poetry add -D pytest-cov ✨
+  Command: poetry add -D pytest-mock ✨
+  Command: poetry add -D tox-gh-actions ✨
+  Create : my-package ✨
+Task: Configure vscode settings
+  Create : .vscode/settings.json ✨
+Task: Configure pyproject.toml settings
+  Write  : pyproject.toml ✨
+  COnfigure: __init__.py
+Task: Create makefile
+  Create : Makefile ✨
+Task: Create github actions
+  Create : unittest.yml ✨
+Task: Create README.md
+  Create : README.md ✨
 
 Complete! 🚀
 Let's make the world better! ✨😋🐍🌎
 ```
 
-### Requirement
+## Requirements
 
-- python
-- poetry
+- `python3`
+- `poetry`
 
-## What will be done
-
-- Install elementary dev packages in once
-- Configure dev tools on `pyproject.toml`
-  - Aggregate all configurations in one
-
-### Details
-
-- Installation
-  - Formatter: [`black`](https://github.com/psf/black)
-  - Linter: [`pflake8`](https://github.com/csachs/pyproject-flake8)
-  - Type linter: [`mypy`](https://github.com/python/mypy)
-  - Import formatter: [`isort`](https://github.com/PyCQA/isort)
-  - Test framework: [`pytest`](https://github.com/pytest-dev/pytest)
-    - Plugin: [`pytest-cov`](https://github.com/pytest-dev/pytest-cov)
-- Configuration on `pyproject.toml`
-  - Max line length: default is `119`
-  - Ignore [`PEP8`](https://pep8.org/): `None`
-    - No PEP8 rules are ignored
-  - Comfortable `mypy` setting
-
-## Why black and pflake8?
-
-### Formatter: [`black`](https://github.com/psf/black)
-
-`Black` finalize the formats in one. That's the biggest reason it got chosen.
-
-> Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of hand-formatting. In return, Black gives you speed, determinism, and freedom from pycodestyle nagging about formatting. You will save time and mental energy for more important matters.
-
-### Linter: [`pflake8`](https://github.com/csachs/pyproject-flake8)
-
-The configurations must be aggregated in one place, `pyproject.toml`. `pflake8` enables to configure `flake8` on `pyproject.toml`.
-
-## Example of pyproject.toml
+## Example configurations on `pyproject.toml`
 
 With default setting, this kind of `pyproject.toml` file will be generated.
 

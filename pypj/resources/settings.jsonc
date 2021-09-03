@@ -25,5 +25,5 @@
   },
 
   // common
-  "cSpell.words": ["noqa", "pyproject"]
+  "cSpell.words": ["noqa", "pyproject", "PACKAGE_NAME"]
 }
