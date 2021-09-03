@@ -1,14 +1,13 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: "[BUG]"
+title: "BUG: "
 labels: bug
 assignees: edge-minato
-
 ---
 
 <!--
-Thank you for your bug report! 
+Thank you for your bug report!
 The following format is just a format, you can ignore if you want to. 😋
 -->
 
@@ -20,7 +19,7 @@ The following format is just a format, you can ignore if you want to. 😋
 
 ### Meta
 
-OS: [Linux, Windows, Max, Other]
-`python --version`:
-`poetry --version`:
-`pip freeze | grep pypj`:
+- `OS`: [Linux, Windows, Max, Other]
+- `python --version`:
+- `poetry --version`:
+- `pip freeze | grep pypj`:
