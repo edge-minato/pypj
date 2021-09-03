@@ -80,3 +80,28 @@ ISORT_SETTING = """
 profile = "{formatter}"
 line_length = {line_length}
 """
+
+TOX_SETTING = """
+[tool.tox]
+legacy_tox_ini = \"\"\"
+[tox]
+envlist = PY3X_VERSION, flake8, black, mypy, isort
+skipsdist = true
+isolated_build = true
+skip_missing_interpreters = true
+[testenv]
+whitelist_externals = poetry
+require_locked_deps = true
+install_dev_deps = true
+commands =
+    poetry run pytest -v --cov=PACKAGE_DIR --cov-branch
+[testenv:flake8]
+commands = poetry run pflake8 ./PACKAGE_DIR
+[testenv:black]
+commands = poetry run black ./PACKAGE_DIR
+[testenv:mypy]
+commands = poetry run mypy ./PACKAGE_DIR
+[testenv:isort]
+commands = poetry run isort ./PACKAGE_DIR
+\"\"\"
+"""

@@ -7,7 +7,6 @@ class Message(object):
 
 class Emsg(Enum):
     OS_NOT_SUPPORTED = "Pypj only supports unix system."
-    PIP_NOT_FOUND = "pip is not installed."
     FAILED_GET_POETRY_VER = "Failed to get poetry version."
     FAILED_POETRY_NEW = "Failed to 'poetry new'."
     FAILED_POETRY_CONFIG = "Failed to configure poetry."

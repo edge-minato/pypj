@@ -12,6 +12,8 @@ def test_Environment(mocker: MockerFixture) -> None:
     with pytest.raises(SystemExit) as e:
         env = Environment()
         assert env.os == Platform.OTHERS
+        assert env.poetry is not None
+        assert env.python.major == "3"
         assert e.value.code == 0
 
 

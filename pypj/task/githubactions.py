@@ -19,6 +19,8 @@ class GithubActions(Task):
         # write workflows *.yml
         unittest = get_my_resource("unittest.yml")
         unittest = unittest.replace("PYTHON_VERSION", self.setting.python_version.short)
+        publish = get_my_resource("publish.yml")
+        publish = publish.replace("PYTHON_VERSION", self.setting.python_version.short)
         with self.path.wf_unittest.open(mode="w") as f:
             f.write(unittest)
         print(f"{INDENT}Create : unittest.yml {Emoji.OK}")
