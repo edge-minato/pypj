@@ -1,7 +1,6 @@
 from collections import deque
 from os import chdir
 from pathlib import Path
-from shutil import rmtree
 from subprocess import PIPE, run
 from typing import Any
 
@@ -9,19 +8,6 @@ import pytest
 from pytest_mock import MockFixture
 
 from pypj import args, main
-
-
-def prepare_tmp_dir(tmp: Path) -> None:
-
-    # mkdir tmp && cd tmp
-    if tmp.exists():
-        rmtree(tmp)
-    tmp.mkdir()
-    chdir(tmp)
-
-
-def remove_tmp_dir(tmp: Path) -> None:
-    rmtree(tmp)
 
 
 def test_process(mocker: MockFixture) -> None:
@@ -46,14 +32,19 @@ def test_process(mocker: MockFixture) -> None:
 
     mocker.patch("builtins.input", side_effect=dummy_input)
     mocker.patch("pypj.task.poetry.Poetry._Poetry__command", side_effect=dummy_command)
-    # pypj
-    tmp = Path("tmp").resolve()
-    prepare_tmp_dir(tmp)
-    main.process()
-    # assert
-
-    # rm -rf tmp
-    remove_tmp_dir(tmp)
+    # pushd
+    cwd = Path().cwd().resolve()
+    tmp = cwd.joinpath("tmp")
+    chdir(tmp)
+    # poetry new
+    try:
+        main.process()
+    finally:
+        # popd
+        chdir(cwd)
+    package_dir = tmp.joinpath(PACKAGE)
+    assert not package_dir.joinpath("src").exists()
+    assert package_dir.joinpath(PACKAGE).exists()
 
 
 def test_args(mocker: MockFixture) -> None:
