@@ -25,5 +25,5 @@
   },
 
   // common
-  "cSpell.words": ["noqa", "pyproject", "pypj", "Emsg"]
+  "cSpell.words": ["Emsg", "noqa", "PYPI", "pypj", "pyproject"]
 }
