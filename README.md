@@ -39,6 +39,8 @@ The _"Modern"_ project settings `Pypj` suggests is following. We understand some
 - Single filed configurations on `pyproject.toml`
 - Single sourced versioning: [`single-source`](https://github.com/rabbit72/single-source)
 - Command alias: [`make`](https://www.gnu.org/software/make/)
+- CI/CD
+  - unittest workflow
 
 ### Directory structure
 
