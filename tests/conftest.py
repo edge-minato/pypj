@@ -1,8 +1,12 @@
+import json
+import re
 from pathlib import Path
 from shutil import rmtree
 from typing import Generator
 
 import pytest
+import toml  # type: ignore
+import yaml  # type: ignore
 
 
 def prepare_tmp_dir(tmp: Path) -> None:
@@ -23,3 +27,39 @@ def scope_session() -> Generator:
     yield
     remove_tmp_dir(tmp)
     print("teardown after session")
+
+
+def prepare_dir(dir_name: str) -> Path:
+    package_dir = Path("tmp").joinpath(dir_name)
+    package_dir.mkdir()  # mkdir ./tmp/dirname
+    return package_dir
+
+
+def validate_jsonc(file_path: Path) -> bool:
+    try:
+        with file_path.open(mode="r") as f:
+            text = f.read()
+        # delete comments
+        re_text = re.sub(r"/\*[\s\S]*?\*/|//.*", "", text)
+        json.loads(re_text)
+        return True
+    except Exception:
+        return False
+
+
+def validate_yaml(file_path: Path) -> bool:
+    try:
+        with file_path.open(mode="r") as f:
+            yaml.safe_load(f)
+        return True
+    except Exception:
+        return False
+
+
+def validate_toml(file_path: Path) -> bool:
+    try:
+        with file_path.open(mode="r") as f:
+            toml.load(f)
+        return True
+    except Exception:
+        return False
