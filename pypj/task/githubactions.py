@@ -21,7 +21,14 @@ class GithubActions(Task):
         unittest = unittest.replace("PYTHON_VERSION", self.setting.python_version.short)
         publish = get_my_resource("publish.yml")
         publish = publish.replace("PYTHON_VERSION", self.setting.python_version.short)
+        dependabot = get_my_resource("dependabot.yml")
         with self.path.wf_unittest.open(mode="w") as f:
             f.write(unittest)
         print(f"{INDENT}Create : unittest.yml {Emoji.OK}")
+        with self.path.wf_publish.open(mode="w") as f:
+            f.write(publish)
+        print(f"{INDENT}Create : publish.yml {Emoji.OK}")
+        with self.path.dependabot.open(mode="w") as f:
+            f.write(dependabot)
+        print(f"{INDENT}Create : dependabot.yml {Emoji.OK}")
         self.done()

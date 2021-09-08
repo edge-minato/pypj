@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
 from pathlib import Path
+from traceback import format_exc
 
 from pypj.task.githubactions import GithubActions
 from pypj.task.readme import Readme
@@ -45,7 +46,8 @@ def main() -> None:
         print()
         print("Canceled.")
         sys.exit(1)
-    except Exception as e:
+    except Exception:
+        print(format_exc())
         print("If you are behind a proxy, try to set following environmental variables.")
         print("http_proxy, https_proxy, HTTP_PROXY, HTTPS_PROXY")
-        raise e
+        sys.exit(1)

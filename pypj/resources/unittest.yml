@@ -12,7 +12,7 @@ on:
       - main
       - develop
 jobs:
-  build:
+  unittest:
     runs-on: ${{matrix.platform}}
     strategy:
       matrix:

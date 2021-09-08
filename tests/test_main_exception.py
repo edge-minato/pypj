@@ -35,5 +35,6 @@ def test_error_in_main(mocker: MockFixture) -> None:
         assert e.value.code == 1  # type: ignore
 
     mocker.patch("pypj.main.args", side_effect=other_error)
-    with pytest.raises(ValueError):
+    with pytest.raises(SystemExit) as e:
         main.main()
+        assert e.value.code == 1  # type: ignore
