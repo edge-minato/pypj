@@ -20,6 +20,8 @@ class PypjFilePath(object):
         self.github_dir: Path = self.package_dir.joinpath(".github")
         self.github_workflow_dir: Path = self.github_dir.joinpath("workflows")
         self.wf_unittest: Path = self.github_workflow_dir.joinpath("unittest.yml")
+        self.wf_publish: Path = self.github_workflow_dir.joinpath("publish.yml")
+        self.dependabot: Path = self.github_dir.joinpath("dependabot.yml")
 
     def print(self) -> None:
         print(vars(self))
