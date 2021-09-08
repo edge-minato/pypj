@@ -43,6 +43,7 @@ FLAKE8_SETTING = """
 [tool.flake8]
 max-line-length = {line_length}
 max-complexity = 10
+extend-ignore = "E203,"
 """
 
 BLACK_SETTING = """

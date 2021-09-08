@@ -43,6 +43,7 @@ pypj = "pypj.main:main"
 [tool.flake8]
 max-line-length = 119
 max-complexity = 10
+extend-ignore = "E203,"
 
 [tool.black]
 line-length = 119
