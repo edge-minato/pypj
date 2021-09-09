@@ -19,3 +19,6 @@ run:
 
 debug:
 	poetry run pytest ./tests -s -v --cov=pypj --cov-branch --durations=0
+
+unittest:
+	poetry run tox -e py37,py38,py39

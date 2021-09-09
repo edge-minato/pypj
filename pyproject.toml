@@ -34,6 +34,7 @@ tox = "^3.24.3"
 tox-gh-actions = "^2.6.0"
 PyYAML = "^5.4.1"
 toml = "^0.10.2"
+pre-commit = "^2.15.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -89,7 +90,8 @@ whitelist_externals = poetry
 require_locked_deps = true
 install_dev_deps = true
 commands =
-    poetry run pytest ./tests -v --cov=pypj --cov-branch --durations=0
+    poetry install -vv --no-root
+    pytest ./tests -v --cov=pypj --cov-branch --durations=0
 [testenv:flake8]
 commands = poetry run pflake8 ./pypj
 [testenv:black]
