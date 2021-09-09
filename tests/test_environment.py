@@ -45,6 +45,13 @@ def test_Version_exception() -> None:
         Version("1")
 
 
+def test_no_poetry_found(mocker: MockerFixture) -> None:
+    mocker.patch("shutil.which", return_value=None)
+    with pytest.raises(SystemExit) as e:
+        Environment()
+        assert e.value.code == 1  # type: ignore
+
+
 def test_Plarform() -> None:
     w = Platform.WINDOWS
     assert w.name == "WINDOWS"

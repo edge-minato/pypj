@@ -64,18 +64,21 @@ class Environment(object):
     def get_python(self) -> Version:
         return Version(platform.python_version())
 
+    def quit_poetry_not_found(self) -> None:
+        print("Error: Poetry was not found.")
+        print("Please install poetry first.")
+        print(f"Reference: {POETRY_INSTALL_GUIDE}")
+        sys.exit(1)
+
     def get_poetry(self) -> Optional[Version]:
         POETRY = "poetry"
         POETRY_VER = "poetry --version"
         poetry_path = shutil.which(POETRY)
         if poetry_path is None:
-            return None
+            self.quit_poetry_not_found()
         r = run(POETRY_VER, shell=True, stdout=PIPE, stderr=PIPE, text=True)
         if r.returncode != 0:
-            print("Error: Poetry was not found.")
-            print("Please install poetry first.")
-            print(f"Reference: {POETRY_INSTALL_GUIDE}")
-            sys.exit(1)
+            self.quit_poetry_not_found()
         return Version(r.stdout.split()[2])  # "Poetry version 1.1.7"
 
     def warn_if_windows(self) -> None:
