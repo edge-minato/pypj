@@ -3,14 +3,14 @@ fail_fast: true
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.0.0
+    rev: v4.0.1
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-json
       - id: check-yaml
   - repo: https://github.com/psf/black
-    rev: 20.8b1
+    rev: 21.8b0
     hooks:
       - id: black
   - repo: https://github.com/csachs/pyproject-flake8
@@ -18,17 +18,10 @@ repos:
     hooks:
       - id: pyproject-flake8
   - repo: https://github.com/pycqa/isort
-    rev: 5.9.2
+    rev: 5.9.3
     hooks:
       - id: isort
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v0.910
     hooks:
       - id: mypy
-  - repo: local
-    hooks:
-      - id: unittest
-        name: unittest
-        entry: make unittest
-        language: system
-        description: This may fail via editor GUI because of PATH issue of poetry
