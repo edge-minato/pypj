@@ -5,8 +5,8 @@ on:
       - main
       - develop
     paths:
-      - "pypj/*"
-      - "tests/*"
+      - "pypj/**"
+      - "tests/**"
       - "pyproject.toml"
       - "poetry.local"
   pull_request:
