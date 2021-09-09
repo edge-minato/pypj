@@ -95,7 +95,7 @@ whitelist_externals = poetry
 require_locked_deps = true
 install_dev_deps = true
 commands =
-    poetry run pytest -v --cov=PACKAGE_DIR --cov-branch
+    poetry run pytest ./tests -v --cov=PACKAGE_DIR --cov-branch
 [testenv:flake8]
 commands = poetry run pflake8 ./PACKAGE_DIR
 [testenv:black]
