@@ -3,16 +3,13 @@ import sys
 from pathlib import Path
 from traceback import format_exc
 
-from pypj.task.githubactions import GithubActions
-from pypj.task.readme import Readme
-
 from .args import args
-from .const import ASCII_ART, complete_message
+from .const import ASCII_ART
 from .environment import Environment
 from .exception import PypjError
 from .file_path import PypjFilePath
 from .setting import PypjSetting
-from .task import Makefile, Poetry, Pyproject, Vscode
+from .task import Poetry, TaskManager, Tasks
 
 
 def process() -> None:
@@ -24,15 +21,16 @@ def process() -> None:
     setting.package_name_validate()
     setting.customize()
     pypj_file_path = PypjFilePath(Path().cwd(), setting)
-    # execute tasks
+    # define tasks
+    tm = TaskManager(setting, pypj_file_path)
+    tm.add(Tasks.VSCODE)
+    tm.add(Tasks.PYPROJECT)
+    tm.add(Tasks.MAKEFILE)
+    tm.add(Tasks.GITHUB_ACTIONS)
+    tm.add(Tasks.README)
+    # execute
     Poetry(setting, pypj_file_path).execute()
-    Vscode(setting, pypj_file_path).execute()
-    Pyproject(setting, pypj_file_path).execute()
-    Makefile(setting, pypj_file_path).execute()
-    GithubActions(setting, pypj_file_path).execute()
-    Readme(setting, pypj_file_path).execute()
-    # complete
-    complete_message()
+    tm.execute()
 
 
 def main() -> None:
