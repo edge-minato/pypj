@@ -37,9 +37,3 @@ class Emoji(Enum):
 
 
 INDENT = " " * 6
-
-
-def complete_message() -> None:
-    print()
-    print(f"Complete! {Emoji.LETS_GO} ")
-    print(f"Let's make the world better! {Emoji.OK}{Emoji.PERFECT}{Emoji.PYTHON}{Emoji.WORLD}")

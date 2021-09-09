@@ -3,36 +3,34 @@ import sys
 from pathlib import Path
 from traceback import format_exc
 
-from pypj.task.githubactions import GithubActions
-from pypj.task.readme import Readme
+from pypj.cui import ask_no_empty, ask_yN, confirm_proceed
 
 from .args import args
-from .const import ASCII_ART, complete_message
+from .const import ASCII_ART
 from .environment import Environment
 from .exception import PypjError
 from .file_path import PypjFilePath
 from .setting import PypjSetting
-from .task import Makefile, Poetry, Pyproject, Vscode
+from .task import Poetry, TaskManager
 
 
 def process() -> None:
-    # check env
+    # preprocess
     env = Environment()
     print(ASCII_ART.format(python=env.python, poetry=env.poetry))
-    # preprocess
-    setting = PypjSetting(env.python)
-    setting.package_name_validate()
-    setting.customize()
+    # configure
+    package_name = ask_no_empty("Package name: ")
+    setting = PypjSetting(env.python, package_name)
+    customize = ask_yN("Do you want to use customize settings? (y/N): ")
+    if customize:
+        setting.customize()
     pypj_file_path = PypjFilePath(Path().cwd(), setting)
-    # execute tasks
+    # define tasks
+    tm = TaskManager(setting, pypj_file_path, customize)
+    # execute
+    confirm_proceed()
     Poetry(setting, pypj_file_path).execute()
-    Vscode(setting, pypj_file_path).execute()
-    Pyproject(setting, pypj_file_path).execute()
-    Makefile(setting, pypj_file_path).execute()
-    GithubActions(setting, pypj_file_path).execute()
-    Readme(setting, pypj_file_path).execute()
-    # complete
-    complete_message()
+    tm.execute()
 
 
 def main() -> None:

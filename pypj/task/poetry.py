@@ -70,4 +70,4 @@ class Poetry(Task):
         init = get_my_resource("init.py")
         with self.path.package_init.open(mode="w") as f:
             f.write(init)
-        print("{INDENT}Configure: __init__.py  {Emoji.OK}")
+        print(f"{INDENT}Configure: __init__.py  {Emoji.OK}")
