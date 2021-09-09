@@ -31,3 +31,4 @@ repos:
         name: unittest
         entry: make unittest
         language: system
+        description: This may fail via editor GUI because of PATH issue of poetry
