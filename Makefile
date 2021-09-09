@@ -16,3 +16,6 @@ build: clean
 
 run:
 	poetry run ${PACKAGE}
+
+debug:
+	poetry run pytest ./tests -s -v --cov=pypj --cov-branch --durations=0
