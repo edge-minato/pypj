@@ -60,6 +60,11 @@ my-package/
 └── tests
 ```
 
+## Requirements
+
+- `python3`
+- `poetry`
+
 ## Installation
 
 ```sh
@@ -106,11 +111,6 @@ Task: Create README.md
 Complete! 🚀
 Let's make the world better! ✨😋🐍🌎
 ```
-
-## Requirements
-
-- `python3`
-- `poetry`
 
 ## Example configurations on `pyproject.toml`
 
