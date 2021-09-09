@@ -5,10 +5,11 @@ on:
       - main
       - develop
     paths:
+      - ".github/workflows/*"
       - "pypj/**"
       - "tests/**"
       - "pyproject.toml"
-      - "poetry.local"
+      - "poetry.lock"
   pull_request:
     branches:
       - main
