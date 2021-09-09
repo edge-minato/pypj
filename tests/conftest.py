@@ -2,6 +2,7 @@ import json
 import re
 from pathlib import Path
 from shutil import rmtree
+from subprocess import PIPE, run
 from typing import Generator
 
 import pytest
@@ -63,3 +64,16 @@ def validate_toml(file_path: Path) -> bool:
         return True
     except Exception:
         return False
+
+
+class DummyReturn:
+    def __init__(self, returncode: int) -> None:
+        self.returncode: int = returncode
+
+
+def dummy_command(cmd: str) -> DummyReturn:
+    if "poetry new" in cmd:
+        r = run(cmd, shell=True, stdout=PIPE, stderr=PIPE, text=True)
+        return DummyReturn(r.returncode)
+    else:
+        return DummyReturn(0)
