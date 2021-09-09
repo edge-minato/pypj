@@ -4,6 +4,7 @@ VERSION := $(shell grep version pyproject.toml -m1 | awk -F" " '{print $$3}')
 
 install:
 	poetry install
+	poetry run pre-commit install
 
 test:
 	poetry run tox
