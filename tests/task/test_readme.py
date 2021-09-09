@@ -1,7 +1,5 @@
 from pathlib import Path
 
-from pytest_mock import MockFixture
-
 from pypj.environment import Version
 from pypj.file_path import PypjFilePath
 from pypj.setting import PypjSetting
@@ -9,7 +7,7 @@ from pypj.task.readme import Readme
 from tests.conftest import prepare_dir
 
 
-def test_readme(mocker: MockFixture) -> None:
+def test_readme() -> None:
     # prepare
     PACKAGE = "test_readme"
     package_dir = prepare_dir(PACKAGE)
@@ -17,8 +15,7 @@ def test_readme(mocker: MockFixture) -> None:
     readme_rst.touch()
     readme_md = package_dir.joinpath("README.md")
     # execute
-    mocker.patch("builtins.input", return_value=PACKAGE)
-    setting = PypjSetting(Version("0.0.0"))
+    setting = PypjSetting(Version("0.0.0"), PACKAGE)
     filepath = PypjFilePath(Path().cwd().joinpath("tmp"), setting)
     Readme(setting, filepath).execute()
     # assert

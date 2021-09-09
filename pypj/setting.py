@@ -2,14 +2,14 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from .cui import ask_no_empty, ask_with_default_num, ask_Yn, ask_yN
+from .cui import ask_with_default_num, ask_Yn, ask_yN
 from .environment import Version
 
 
 @dataclass
 class PypjSetting(object):
     python_version: Version
-    package_name: str = ""
+    package_name: str
     max_line_length: int = 119
     use_src: bool = False
     venv_in_pj: bool = True
@@ -22,21 +22,17 @@ class PypjSetting(object):
     plugin = ["pytest-cov", "pytest-mock", "tox-gh-actions"]
 
     def __post_init__(self) -> None:
-        self.package_name = ask_no_empty("Package name: ")
+        self.package_name_validate()
 
     def customize(self) -> None:
-        if ask_yN("Do you want to custom setting? (y/N): "):
-            self.max_line_length = ask_with_default_num("Max line length (119): ", 119)
-            self.use_src = ask_yN("Do you want to use src folder? (y/N): ")
-            self.venv_in_pj = ask_Yn("Do you want to keep venv in project? (Y/n): ")
-            confirmation = ask_yN("Are you sure? (y/N): ")
-            if not confirmation:
-                print("Canceled.")
-                sys.exit(0)
+        self.max_line_length = ask_with_default_num("Max line length (119): ", 119)
+        self.use_src = ask_yN("Do you want to use src folder? (y/N): ")
+        self.venv_in_pj = ask_Yn("Do you want to keep venv in project? (Y/n): ")
 
     def package_name_validate(self) -> None:
         if Path().cwd().joinpath(self.package_name).exists():
             print(f"ERROR: Directory {self.package_name} already exists.")
+            sys.exit(1)
 
 
 FLAKE8_SETTING = """

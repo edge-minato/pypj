@@ -1,3 +1,5 @@
+import sys
+
 YES = ["y", "Y", "yes", "Yes", "YES"]
 NO = ["n", "N", "no", "No", "NO"]
 
@@ -67,3 +69,9 @@ def ask_yN(msg: str) -> bool:
 def ask_no_empty(msg: str) -> str:
     r = ask(msg)
     return ask_no_empty(msg) if is_empty(r) else r
+
+
+def confirm_proceed() -> None:
+    if not ask_yN("Do you want to proceed? (y/N): "):
+        print("Canceled.")
+        sys.exit(0)

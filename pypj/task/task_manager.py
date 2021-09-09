@@ -2,6 +2,7 @@ from enum import Enum
 from typing import List
 
 from ..const import Emoji
+from ..cui import ask_Yn
 from ..file_path import PypjFilePath
 from ..setting import PypjSetting
 from .githubactions import GithubActions
@@ -21,10 +22,17 @@ class Tasks(Enum):
 
 
 class TaskManager:
-    def __init__(self, setting: PypjSetting, file_path: PypjFilePath) -> None:
+    def __init__(self, setting: PypjSetting, file_path: PypjFilePath, customize: bool) -> None:
         self.setting = setting
         self.file_path = file_path
         self.task_list: List[Task] = []
+        self.add(Tasks.README)
+        self.add(Tasks.PYPROJECT)
+
+        if customize:
+            self.customize()
+        else:
+            self.default()
 
     def add(self, task_name: Tasks) -> None:
         task = task_name.value(self.setting, self.file_path)
@@ -32,6 +40,19 @@ class TaskManager:
             if task.name == t:
                 return
         self.task_list.append(task)  # register
+
+    def default(self) -> None:
+        self.add(Tasks.GITHUB_ACTIONS)
+        self.add(Tasks.VSCODE)
+        self.add(Tasks.MAKEFILE)
+
+    def customize(self) -> None:
+        if ask_Yn("Do you want configured github workflows? (Y/n): "):
+            self.add(Tasks.GITHUB_ACTIONS)
+        if ask_Yn("Do you want configured vscode settings? (Y/n): "):
+            self.add(Tasks.VSCODE)
+        if ask_Yn("Do you want command alias as Makefile? (Y/n): "):
+            self.add(Tasks.MAKEFILE)
 
     def execute(self) -> None:
         for task in self.task_list:

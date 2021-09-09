@@ -37,7 +37,13 @@ def github_exists(package_dir: Path) -> bool:
 
 def test_default(mocker: MockFixture) -> None:
     PACKAGE = "tmp_package_default"
-    user_input = deque([PACKAGE, "N"])
+    user_input = deque(
+        [
+            PACKAGE,  # package name
+            "N",  # customize
+            "Y",  # confirmation
+        ]
+    )
 
     def dummy_input() -> str:
         r = user_input.popleft()
@@ -67,7 +73,19 @@ def test_default(mocker: MockFixture) -> None:
 
 def test_use_src(mocker: MockFixture) -> None:
     PACKAGE = "tmp_package_use_src"
-    user_input = deque([PACKAGE, "Y", "999", "Y", "Y", "Y"])
+    user_input = deque(
+        [
+            PACKAGE,  # package name
+            "Y",  # customize
+            "999",  # max line length
+            "Y",  # use src dir
+            "Y",  # venv in pj
+            "N",  # github workflow
+            "N",  # vscode setting
+            "N",  # Makefile
+            "Y",  # confirmation
+        ]
+    )
 
     def dummy_input() -> str:
         r = user_input.popleft()
@@ -89,7 +107,7 @@ def test_use_src(mocker: MockFixture) -> None:
     package_dir = tmp.joinpath(PACKAGE)
     assert not package_dir.joinpath(PACKAGE).exists()
     assert src_dir_exists(package_dir)
-    assert github_exists(package_dir)
+    assert not github_exists(package_dir)
     assert readme_exists(package_dir)
-    assert vscode_exists(package_dir)
-    assert makefile_exists(package_dir)
+    assert not vscode_exists(package_dir)
+    assert not makefile_exists(package_dir)

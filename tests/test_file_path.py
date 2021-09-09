@@ -11,11 +11,10 @@ def path(add: str) -> Path:
 
 
 def test_pypj_file_path(mocker: MockFixture) -> None:
-    mocker.patch("builtins.input", return_value="package")
     python_version = Version("3.8.0")
-
     setting = PypjSetting(
         python_version=python_version,
+        package_name="package",
         max_line_length=100,
         use_src=False,
         venv_in_pj=False,
@@ -34,3 +33,5 @@ def test_pypj_file_path(mocker: MockFixture) -> None:
     assert fp.github_dir == path("/package/.github")
     assert fp.github_workflow_dir == path("/package/.github/workflows")
     assert fp.wf_unittest == path("/package/.github/workflows/unittest.yml")
+    assert fp.wf_publish == path("/package/.github/workflows/publish.yml")
+    assert fp.dependabot == path("/package/.github/dependabot.yml")

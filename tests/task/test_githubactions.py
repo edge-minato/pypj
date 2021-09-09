@@ -1,7 +1,5 @@
 from pathlib import Path
 
-from pytest_mock import MockFixture
-
 from pypj.environment import Version
 from pypj.file_path import PypjFilePath
 from pypj.setting import PypjSetting
@@ -9,13 +7,12 @@ from pypj.task.githubactions import GithubActions
 from tests.conftest import prepare_dir, validate_yaml
 
 
-def test_githubactions(mocker: MockFixture) -> None:
+def test_githubactions() -> None:
     # prepare
     PACKAGE = "test_githubactions"
     package_dir = prepare_dir(PACKAGE)
     # execute
-    mocker.patch("builtins.input", return_value=PACKAGE)
-    setting = PypjSetting(Version("0.0.0"))
+    setting = PypjSetting(Version("0.0.0"), PACKAGE)
     filepath = PypjFilePath(Path().cwd().joinpath("tmp"), setting)
     GithubActions(setting, filepath).execute()
     # assert
