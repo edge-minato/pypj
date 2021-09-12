@@ -1,33 +1,47 @@
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
+from typing import List
 
 from .cui import ask_with_default_num, ask_Yn, ask_yN
 from .environment import Version
+from .type_def import Formatter, ImportSorter, Linter, Plugin, TestFramework, TypeChecker
 
 
 @dataclass
 class PypjSetting(object):
     python_version: Version
     package_name: str
-    max_line_length: int = 119
+    max_line_length: int = 11
+    # use or not
     use_src: bool = False
     venv_in_pj: bool = True
-    formatter: str = "black"
-    linter: str = "pyproject-flake8"
-    type_linter: str = "mypy"
-    import_formatter: str = "isort"
-    test_fw: str = "pytest"
-    tox: str = "tox"
-    plugin = ["pytest-cov", "pytest-mock", "tox-gh-actions"]
+    guthub_actions: bool = True
+    vscode: bool = True
+    makefile: bool = True
+    precommit: bool = True
+    # software
+    formatter: Formatter = Formatter.BLACK
+    linter: Linter = Linter.PFLAKE8
+    type_checker: TypeChecker = TypeChecker.MYPY
+    import_sorter: ImportSorter = ImportSorter.ISORT
+    unittest_framework: TestFramework = TestFramework.PYTEST
+    test_framework: TestFramework = TestFramework.TOX
+    plugin: List[Plugin] = field(
+        default_factory=lambda: [Plugin.PYTEST_COV, Plugin.PYTEST_MOCK, Plugin.TOX_GH_ACTIONS]
+    )
 
     def __post_init__(self) -> None:
         self.package_name_validate()
 
     def customize(self) -> None:
         self.max_line_length = ask_with_default_num("Max line length (119): ", 119)
-        self.use_src = ask_yN("Do you want to use src folder? (y/N): ")
-        self.venv_in_pj = ask_Yn("Do you want to keep venv in project? (Y/n): ")
+        self.use_src = ask_yN("Use src directory? (y/N): ")
+        self.venv_in_pj = ask_Yn("Keep venv in project? (Y/n): ")
+        self.guthub_actions = ask_Yn("Use github workflows? (Y/n): ")
+        self.vscode = ask_Yn("Use vscode settings? (Y/n): ")
+        self.precommit = ask_yN("Use pre-commit? (y/N): ")
+        self.makefile = ask_Yn("Use command alias as Makefile? (Y/n): ")
 
     def package_name_validate(self) -> None:
         if Path().cwd().joinpath(self.package_name).exists():

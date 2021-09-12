@@ -18,3 +18,21 @@ def test_makefile() -> None:
     # assert
     makefile = package_dir.joinpath("Makefile")
     assert makefile.exists()
+    with makefile.open(mode="r") as f:
+        assert "pre-commit" in f.read()
+
+
+def test_makefile_wo_precommit() -> None:
+    # prepare
+    PACKAGE = "test_makefile_wo_precommit"
+    package_dir = prepare_dir(PACKAGE)
+    # execute
+    setting = PypjSetting(Version("0.0.0"), PACKAGE)
+    setting.precommit = False
+    filepath = PypjFilePath(Path().cwd().joinpath("tmp"), setting)
+    Makefile(setting, filepath).execute()
+    # assert
+    makefile = package_dir.joinpath("Makefile")
+    assert makefile.exists()
+    with makefile.open(mode="r") as f:
+        assert "pre-commit" not in f.read()

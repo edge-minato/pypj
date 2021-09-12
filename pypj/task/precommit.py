@@ -5,17 +5,16 @@ from ..setting import PypjSetting
 from .task import Task
 
 
-class Makefile(Task):
+class PreCommit(Task):
     def __init__(self, setting: PypjSetting, path: PypjFilePath) -> None:
-        name = "Makefile"
+        name = "Pre-commit"
         super().__init__(name, setting, path)
 
     def execute(self) -> None:
-        print("Task: Create makefile")
+        print("Task: Configure pre-commit ")
         self.done_check()
-        makefile_path = "Makefile_precommit" if self.setting.precommit else "Makefile"
-        makefile = get_my_resource(makefile_path)
-        with self.path.makefile.open(mode="w") as f:
-            f.write(makefile)
-        print(f"{INDENT}Create : Makefile {Emoji.OK}")
+        precommit = get_my_resource(".pre-commit-config.yaml")
+        with self.path.precommit.open(mode="w") as f:
+            f.write(precommit)
+        print(f"{INDENT}Create : .pre-commit-config.yaml {Emoji.OK}")
         self.done()

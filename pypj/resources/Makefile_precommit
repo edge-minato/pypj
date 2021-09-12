@@ -24,18 +24,3 @@ debug:
 
 test:
 	poetry run tox
-
-unittest:
-	poetry run tox -e py37,py38,py39
-
-style:
-	poetry run tox -e black,flake8,mypy,isort
-
-format:
-	poetry run tox -e black,isort
-
-lint:
-	poetry run tox -e flake8
-
-type:
-	portry run tox -e mypy

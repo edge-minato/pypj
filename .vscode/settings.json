@@ -25,5 +25,15 @@
   },
 
   // common
-  "cSpell.words": ["Emsg", "noqa", "PYPI", "pypj", "pyproject"]
+  "cSpell.words": [
+    "Eenum",
+    "Emsg",
+    "noqa",
+    "pflake8",
+    "precommit",
+    "PYPI",
+    "pypj",
+    "pyproject",
+    "venv"
+  ]
 }

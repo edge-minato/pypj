@@ -49,7 +49,7 @@ max-complexity = 10
 extend-ignore = "E203,"
 
 [tool.black]
-line-length = 119
+line-length = 118
 exclude = '''
 (
     migrations

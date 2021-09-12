@@ -21,12 +21,11 @@ def process() -> None:
     # configure
     package_name = ask_no_empty("Package name: ")
     setting = PypjSetting(env.python, package_name)
-    customize = ask_yN("Do you want to use customize settings? (y/N): ")
-    if customize:
+    if ask_yN("Do you want to customize settings? (y/N): "):
         setting.customize()
     pypj_file_path = PypjFilePath(Path().cwd(), setting)
     # define tasks
-    tm = TaskManager(setting, pypj_file_path, customize)
+    tm = TaskManager(setting, pypj_file_path)
     # execute
     confirm_proceed()
     Poetry(setting, pypj_file_path).execute()

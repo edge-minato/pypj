@@ -1,12 +1,12 @@
-.PHONY: install test clean build run
+.PHONY: install update clean build run debug test
 PACKAGE := $(shell grep name pyproject.toml -m1 | awk -F" " '{print $$3}')
 VERSION := $(shell grep version pyproject.toml -m1 | awk -F" " '{print $$3}')
 
 install:
 	poetry install
 
-test:
-	poetry run tox
+update:
+	poetry update
 
 clean:
 	rm -rf dist
@@ -16,3 +16,9 @@ build: clean
 
 run:
 	poetry run ${PACKAGE}
+
+debug:
+	poetry run pytest ./tests -s -v --cov=pypj --cov-branch --durations=0
+
+test:
+	poetry run tox

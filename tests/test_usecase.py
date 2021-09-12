@@ -26,6 +26,10 @@ def makefile_exists(package_dir: Path) -> bool:
     return package_dir.joinpath("Makefile").exists()
 
 
+def precommit_exists(package_dir: Path) -> bool:
+    return package_dir.joinpath(".pre-commit-config.yaml").exists()
+
+
 def github_exists(package_dir: Path) -> bool:
     github_dir = package_dir.joinpath(".github")
     github_wf_dir = github_dir.joinpath("workflows")
@@ -68,10 +72,11 @@ def test_default(mocker: MockFixture) -> None:
     assert github_exists(package_dir)
     assert readme_exists(package_dir)
     assert vscode_exists(package_dir)
+    assert precommit_exists(package_dir)
     assert makefile_exists(package_dir)
 
 
-def test_use_src(mocker: MockFixture) -> None:
+def test_customize(mocker: MockFixture) -> None:
     PACKAGE = "tmp_package_use_src"
     user_input = deque(
         [
@@ -82,6 +87,7 @@ def test_use_src(mocker: MockFixture) -> None:
             "Y",  # venv in pj
             "N",  # github workflow
             "N",  # vscode setting
+            "N",  # precommit
             "N",  # Makefile
             "Y",  # confirmation
         ]
@@ -110,4 +116,5 @@ def test_use_src(mocker: MockFixture) -> None:
     assert not github_exists(package_dir)
     assert readme_exists(package_dir)
     assert not vscode_exists(package_dir)
+    assert not precommit_exists(package_dir)
     assert not makefile_exists(package_dir)
