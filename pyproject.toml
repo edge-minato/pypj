@@ -35,6 +35,7 @@ tox-gh-actions = "^2.6.0"
 PyYAML = "^5.4.1"
 toml = "^0.10.2"
 pre-commit = "^2.15.0"
+flake8-bugbear = "^21.9.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -46,10 +47,11 @@ pypj = "pypj.main:main"
 [tool.flake8]
 max-line-length = 119
 max-complexity = 10
-extend-ignore = "E203,"
+select = "C,E,F,W,B"
+ignore = "E203"
 
 [tool.black]
-line-length = 118
+line-length = 119
 exclude = '''
 (
     migrations

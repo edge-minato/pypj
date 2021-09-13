@@ -133,6 +133,21 @@ pycodestyle = ">=2.7.0,<2.8.0"
 pyflakes = ">=2.3.0,<2.4.0"
 
 [[package]]
+name = "flake8-bugbear"
+version = "21.9.1"
+description = "A plugin for flake8 finding likely bugs and design problems in your program. Contains warnings that don't belong in pyflakes and pycodestyle."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+attrs = ">=19.2.0"
+flake8 = ">=3.0.0"
+
+[package.extras]
+dev = ["coverage", "black", "hypothesis", "hypothesmith"]
+
+[[package]]
 name = "identify"
 version = "2.2.14"
 description = "File identification library for Python"
@@ -521,7 +536,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "77269c1c5f9a6bae8d8d1294499b8da972e9a066964ab705f2c4f7af6f9e3efd"
+content-hash = "6dacc18736a3a2138735adca160bb84f8784371aa0c8b3c4d552b25907b673c7"
 
 [metadata.files]
 atomicwrites = [
@@ -617,6 +632,10 @@ filelock = [
 flake8 = [
     {file = "flake8-3.9.2-py2.py3-none-any.whl", hash = "sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907"},
     {file = "flake8-3.9.2.tar.gz", hash = "sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b"},
+]
+flake8-bugbear = [
+    {file = "flake8-bugbear-21.9.1.tar.gz", hash = "sha256:2f60c8ce0dc53d51da119faab2d67dea978227f0f92ed3c44eb7d65fb2e06a96"},
+    {file = "flake8_bugbear-21.9.1-py36.py37.py38-none-any.whl", hash = "sha256:45bfdccfb9f2d8aa140e33cac8f46f1e38215c13d5aa8650e7e188d84e2f94c6"},
 ]
 identify = [
     {file = "identify-2.2.14-py2.py3-none-any.whl", hash = "sha256:113a76a6ba614d2a3dd408b3504446bcfac0370da5995aa6a17fd7c6dffde02d"},
