@@ -37,5 +37,11 @@
     "pypj",
     "pyproject",
     "venv"
-  ]
+  ],
+  "files.exclude": {
+    ".coverage": true,
+    ".mypy_cache": true,
+    ".tox": true,
+    ".venv": true
+  }
 }

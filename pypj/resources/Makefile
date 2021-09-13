@@ -1,4 +1,4 @@
-.PHONY: install update clean build run debug test
+.PHONY: install update clean build run debug test style
 PACKAGE := $(shell grep name pyproject.toml -m1 | awk -F" " '{print $$3}')
 VERSION := $(shell grep version pyproject.toml -m1 | awk -F" " '{print $$3}')
 
@@ -22,3 +22,6 @@ debug:
 
 test:
 	poetry run tox
+
+style:
+	poetry run tox -e black,flake8,mypy,isort

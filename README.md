@@ -9,58 +9,64 @@
 [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black")
 [![Downloads](https://img.shields.io/pypi/dm/fbm.svg)](https://pypistats.org/packages/pypj)
 
-`Pypj` provides you an initialized modern python project. All the basic dev package installations, their configurations, and test workflows will be done, so we can focus on coding. All you have to do is install `poetry` and hit `pypj`, name your project.
+`Pypj` provides you an initialized modern python project. All the basic dev package installations, their configurations, and test workflows will be done, so we can focus on coding. All you have to do is install `poetry` and `pypj`, hit `pypj`, and name your project.
 
 ## What will be provided
 
-The _"Modern"_ project settings `Pypj` suggests is following. We understand some developers prefer another tools, and you can remove or customize the packages to be installed.
+The _"Modern"_ python project template `Pypj` suggests will be provided as following directory structure. We understand some developers prefer another tools, and you can remove or customize the tools to be prepared. Most of all configurations regarding the code style tools, like formatter and linter, are aggregated in `pyproject.toml`.
 
-### Environment
+```
+my-package/
+├── .github
+│   ├── dependabot.yml       # Dependency updater
+│   └── workflows
+│       ├── publish.yml      # Tagging on GitHub triggers publishing to Pypi
+│       └── unittest.yml     # On each push and PR, execute the unittest
+├── .pre-commit-config.yaml  # Checks format and styles of each file
+├── .venv
+├── .vscode
+│   └── settings.json        # Format, Lint, Type check and Import sort on save
+├── Makefile                 # Useful command alias
+├── README.md                # How to start with pypj
+├── my-package               # Your package to be coded
+├── poetry.lock
+├── pyproject.toml           # Configured settings
+└── tests
+```
+
+## Developing tools pypj provides
 
 - Package manager: [`poetry`](https://github.com/python-poetry/poetry)
 - Formatter: [`black`](https://github.com/psf/black)
-- Linter: [`pflake8`](https://github.com/csachs/pyproject-flake8)
-- Type linter: [`mypy`](https://github.com/python/mypy)
-- Import formatter: [`isort`](https://github.com/PyCQA/isort)
+- Linter: [`pflake8`](https://github.com/csachs/pyproject-flake8) (\*1)
+  - Plugin: [`flake8-bugbear`](https://github.com/PyCQA/flake8-bugbear)
+- Type checker: [`mypy`](https://github.com/python/mypy)
+- Import sorter: [`isort`](https://github.com/PyCQA/isort)
 - Test framework:
   - [`pytest`](https://github.com/pytest-dev/pytest)
     - [`pytest-cov`](https://github.com/pytest-dev/pytest-cov)
     - [`pytest-mock`](https://github.com/pytest-dev/pytest-mock)
   - [`tox`](https://github.com/tox-dev/tox)
     - [`tox-gh-actions`](https://github.com/ymyzk/tox-gh-actions)
+- Git hooks manager: [`pre-commit`](https://github.com/pre-commit/pre-commit)
 
-### Coding format
+(\*1) `pflake8` wraps `flake8` to aggregate settings to `pyproject.toml`
+
+## Coding format pypj provides
 
 - Max line length: `119` as default
 - Type hinting: `required`
 - And some detailed configures
 
-### Other features
+## Other features
 
 - Single filed configurations on `pyproject.toml`
 - Single sourced versioning: [`single-source`](https://github.com/rabbit72/single-source)
 - Command alias: [`make`](https://www.gnu.org/software/make/)
 - CI/CD
   - unittest workflow
-
-### Directory structure
-
-Do you think the directory tree looks poor? Because all configurations are aggregated in `pyproject.toml`, we don't need any tool specific configuration files.
-
-```
-$ tree -a -L 1
-my-package/
-├── .github
-├── .pre-commit-config.yaml
-├── .venv
-├── .vscode
-├── Makefile
-├── README.md
-├── my-package
-├── poetry.lock
-├── pyproject.toml
-└── tests
-```
+  - publish package workflow
+  - dependency updater configuration
 
 ## Requirements
 
@@ -139,7 +145,10 @@ black = "^21.8b0"
 pyproject-flake8 = "^0.0.1-alpha.2"
 mypy = "^0.910"
 isort = "^5.9.3"
+tox = "^3.24.3"
 pytest-cov = "^2.12.1"
+pytest-mock = "^3.6.1"
+tox-gh-actions = "^2.7.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -153,13 +162,16 @@ exclude = '''
     | .mypy_cache
     | .pytest_cache
     | .tox
-    | venv
+    | .venv
+    | dist
 )
 '''
 
 [tool.flake8]
 max-line-length = 119
 max-complexity = 10
+select = "C,E,F,W,B"
+ignore = "E203"
 
 [tool.mypy]
 # common
@@ -177,6 +189,64 @@ warn_redundant_casts = true
 [tool.isort]
 profile = "black"
 line_length = 119
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py38, flake8, black, mypy, isort
+skipsdist = true
+isolated_build = true
+skip_missing_interpreters = true
+[testenv]
+whitelist_externals = poetry
+require_locked_deps = true
+install_dev_deps = true
+commands =
+    poetry install -vv --no-root
+    pytest ./tests -v --cov=pypj --cov-branch --durations=0
+[testenv:flake8]
+commands = poetry run pflake8 ./my-package
+[testenv:black]
+commands = poetry run black ./my-package
+[testenv:mypy]
+commands = poetry run mypy ./my-package
+[testenv:isort]
+commands = poetry run isort ./my-package
+"""
+```
+
+## Alias as Makefile
+
+```Makefile
+.PHONY: install update clean build run debug test style
+PACKAGE := $(shell grep name pyproject.toml -m1 | awk -F" " '{print $$3}')
+VERSION := $(shell grep version pyproject.toml -m1 | awk -F" " '{print $$3}')
+
+install:
+        poetry install
+        poetry run pre-commit install
+
+update:
+        poetry update
+        poetry run pre-commit autoupdate
+
+clean:
+        rm -rf dist
+
+build: clean
+        poetry build
+
+run:
+        poetry run ${PACKAGE} # Just in case the package provides a command
+
+debug:
+        poetry run pytest ./tests -s -v --cov=pypj --cov-branch --durations=0
+
+test:
+        poetry run tox
+
+style:
+        poetry run tox -e black,flake8,mypy,isort
 ```
 
 ## Supported python versions
