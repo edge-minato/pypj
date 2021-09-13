@@ -27,5 +27,13 @@
   },
 
   // common
-  "cSpell.words": ["noqa", "pyproject", "PACKAGE_NAME"]
+  "cSpell.words": ["noqa", "pyproject", "PACKAGE_NAME"],
+
+  // hide files and directories
+  "files.exclude": {
+    ".coverage": true,
+    ".mypy_cache": true,
+    ".tox": true,
+    ".venv": true
+  }
 }
