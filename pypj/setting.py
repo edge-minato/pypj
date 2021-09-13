@@ -40,7 +40,7 @@ class PypjSetting(object):
         self.venv_in_pj = ask_Yn("Keep venv in project? (Y/n): ")
         self.guthub_actions = ask_Yn("Use github workflows? (Y/n): ")
         self.vscode = ask_Yn("Use vscode settings? (Y/n): ")
-        self.precommit = ask_yN("Use pre-commit? (y/N): ")
+        self.precommit = ask_Yn("Use pre-commit? (Y/n): ")
         self.makefile = ask_Yn("Use command alias as Makefile? (Y/n): ")
 
     def package_name_validate(self) -> None:
