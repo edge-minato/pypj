@@ -36,12 +36,12 @@ class PypjSetting(object):
 
     def customize(self) -> None:
         self.max_line_length = ask_with_default_num("Max line length (119): ", 119)
-        self.use_src = ask_yN("Use src directory? (y/N): ")
-        self.venv_in_pj = ask_Yn("Keep venv in project? (Y/n): ")
-        self.guthub_actions = ask_Yn("Use github workflows? (Y/n): ")
-        self.vscode = ask_Yn("Use vscode settings? (Y/n): ")
-        self.precommit = ask_Yn("Use pre-commit? (Y/n): ")
-        self.makefile = ask_Yn("Use command alias as Makefile? (Y/n): ")
+        self.use_src = ask_yN("Use src directory?")
+        self.venv_in_pj = ask_Yn("Keep venv in project?")
+        self.guthub_actions = ask_Yn("Use github workflows?")
+        self.vscode = ask_Yn("Use vscode settings?")
+        self.precommit = ask_Yn("Use pre-commit?")
+        self.makefile = ask_Yn("Use command alias as Makefile?")
 
     def package_name_validate(self) -> None:
         if Path().cwd().joinpath(self.package_name).exists():

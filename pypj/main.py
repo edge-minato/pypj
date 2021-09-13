@@ -21,7 +21,7 @@ def process() -> None:
     # configure
     package_name = ask_no_empty("Package name: ")
     setting = PypjSetting(env.python, package_name)
-    if ask_yN("Do you want to customize settings? (y/N): "):
+    if ask_yN("Do you want to customize settings?"):
         setting.customize()
     pypj_file_path = PypjFilePath(Path().cwd(), setting)
     # define tasks
