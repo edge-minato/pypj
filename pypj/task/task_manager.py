@@ -53,4 +53,6 @@ class TaskManager:
     def complete_message(self) -> None:
         print()
         print(f"Complete! {Emoji.LETS_GO} ")
+        if self.setting.precommit:
+            print('Note: Hit "make update" to update pre-commit hooks.')
         print(f"Let's make the world better! {Emoji.OK}{Emoji.PERFECT}{Emoji.PYTHON}{Emoji.WORLD}")
