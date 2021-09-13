@@ -48,7 +48,7 @@ my-package/
     - [`pytest-mock`](https://github.com/pytest-dev/pytest-mock)
   - [`tox`](https://github.com/tox-dev/tox)
     - [`tox-gh-actions`](https://github.com/ymyzk/tox-gh-actions)
-- Git commit manager: [`pre-commit`](https://github.com/pre-commit/pre-commit)
+- Git hooks manager: [`pre-commit`](https://github.com/pre-commit/pre-commit)
 
 ### Coding format pypj provides
 
