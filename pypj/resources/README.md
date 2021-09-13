@@ -1,5 +1,7 @@
 # Getting Started with Pypj
 
+NOTE: This kick starter guide suppose the default settings of `pypj`. If you customized some configurations and disabled the features or tools, that could be difference with this guide.
+
 ## Coding
 
 It's ready to start coding, just proceed with it!

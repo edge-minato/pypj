@@ -28,7 +28,12 @@ class PypjSetting(object):
     unittest_framework: TestFramework = TestFramework.PYTEST
     test_framework: TestFramework = TestFramework.TOX
     plugin: List[Plugin] = field(
-        default_factory=lambda: [Plugin.PYTEST_COV, Plugin.PYTEST_MOCK, Plugin.TOX_GH_ACTIONS]
+        default_factory=lambda: [
+            Plugin.FLAKE8_BUGBEAR,
+            Plugin.PYTEST_COV,
+            Plugin.PYTEST_MOCK,
+            Plugin.TOX_GH_ACTIONS,
+        ]
     )
 
     def __post_init__(self) -> None:
