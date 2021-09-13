@@ -29,6 +29,7 @@ class TestFramework(Eenum):
 
 
 class Plugin(Eenum):
+    FLAKE8_BUGBEAR = "flake8-bugbear"
     PYTEST_COV = "pytest-cov"
     PYTEST_MOCK = "pytest-mock"
     TOX_GH_ACTIONS = "tox-gh-actions"

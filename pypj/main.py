@@ -6,7 +6,7 @@ from traceback import format_exc
 from pypj.cui import ask_no_empty, ask_yN, confirm_proceed
 
 from .args import args
-from .const import ASCII_ART
+from .const import ASCII_ART, GITHUB_URL
 from .environment import Environment
 from .exception import PypjError
 from .file_path import PypjFilePath
@@ -45,6 +45,8 @@ def main() -> None:
         sys.exit(1)
     except Exception:
         print(format_exc())
+        print()
         print("If you are behind a proxy, try to set following environmental variables.")
         print("http_proxy, https_proxy, HTTP_PROXY, HTTPS_PROXY")
+        print(f"Else, please report the issue to {GITHUB_URL}")
         sys.exit(1)
