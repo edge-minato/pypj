@@ -4,6 +4,10 @@
 
 It's ready to start coding, just proceed with it!
 
+## Git hook
+
+Hit `make update` and `make install` to enable configured pre-commit hooks.
+
 ## Versioning
 
 Pypj provides single sourced versioning, which means only `pyproject.toml` contains version information.
