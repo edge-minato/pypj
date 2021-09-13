@@ -53,7 +53,8 @@ FLAKE8_SETTING = """
 [tool.flake8]
 max-line-length = {line_length}
 max-complexity = 10
-extend-ignore = "E203,"
+select = "C,E,F,W,B"
+ignore = "E203"
 """
 
 BLACK_SETTING = """
@@ -105,7 +106,8 @@ whitelist_externals = poetry
 require_locked_deps = true
 install_dev_deps = true
 commands =
-    poetry run pytest ./tests -v --cov=PACKAGE_DIR --cov-branch
+    poetry install -vv --no-root
+    pytest ./tests -v --cov=pypj --cov-branch --durations=0
 [testenv:flake8]
 commands = poetry run pflake8 ./PACKAGE_DIR
 [testenv:black]
