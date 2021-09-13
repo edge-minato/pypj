@@ -22,6 +22,7 @@ class PypjFilePath(object):
         self.wf_unittest: Path = self.github_workflow_dir.joinpath("unittest.yml")
         self.wf_publish: Path = self.github_workflow_dir.joinpath("publish.yml")
         self.dependabot: Path = self.github_dir.joinpath("dependabot.yml")
+        self.precommit: Path = self.package_dir.joinpath(".pre-commit-config.yaml")
 
     def print(self) -> None:
         print(vars(self))

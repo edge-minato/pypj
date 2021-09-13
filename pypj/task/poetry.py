@@ -53,10 +53,10 @@ class Poetry(Task):
         dev_packages = [
             self.setting.formatter,
             self.setting.linter,
-            self.setting.type_linter,
-            self.setting.import_formatter,
-            self.setting.test_fw,
-            self.setting.tox,
+            self.setting.type_checker,
+            self.setting.import_sorter,
+            self.setting.unittest_framework,
+            self.setting.test_framework,
         ]
         command_list = [ADD_CMD.format(package) for package in dev_packages]
         for plugin in self.setting.plugin:

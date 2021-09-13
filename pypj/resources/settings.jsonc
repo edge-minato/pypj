@@ -8,12 +8,14 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Path": "${workspaceFolder}/.venv/bin/pflake8",
+  "python.linting.flake8Args": [], // To overwrite the global settings with pyproject.toml
   "python.linting.mypyEnabled": true,
   "python.linting.mypyPath": "${workspaceFolder}/.venv/bin/mypy",
   "python.linting.mypyArgs": ["--config-file", "pyproject.toml"],
   // formatter
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "${workspaceFolder}/.venv/bin/black",
+  "python.formatting.blackArgs": [], // To overwrite the global settings with pyproject.toml
   "python.sortImports.path": "${workspaceFolder}/.venv/bin/isort",
 
   // python specific
