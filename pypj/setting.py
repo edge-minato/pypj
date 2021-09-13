@@ -12,7 +12,7 @@ from .type_def import Formatter, ImportSorter, Linter, Plugin, TestFramework, Ty
 class PypjSetting(object):
     python_version: Version
     package_name: str
-    max_line_length: int = 11
+    max_line_length: int = 119
     # use or not
     use_src: bool = False
     venv_in_pj: bool = True
