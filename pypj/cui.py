@@ -59,10 +59,12 @@ def ask_yn(msg: str, default: bool = False) -> bool:
 
 
 def ask_Yn(msg: str) -> bool:
+    msg = f"{msg} (Y/n): "
     return ask_yn(msg, True)
 
 
 def ask_yN(msg: str) -> bool:
+    msg = f"{msg} (y/N): "
     return ask_yn(msg, False)
 
 

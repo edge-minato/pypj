@@ -84,6 +84,6 @@ class Environment(object):
     def warn_if_windows(self) -> None:
         if self.os is not Platform.UNIX:
             print("This operating system is not supported but you can try.")
-            if not ask_yN("Do you want to proceed? (y/N): "):
+            if not ask_yN("Do you want to proceed?"):
                 print("Canceld.")
                 sys.exit(0)
