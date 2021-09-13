@@ -7,6 +7,7 @@
 [![Unittest](https://github.com/edge-minato/pypj/actions/workflows/unittest.yml/badge.svg)](https://github.com/edge-minato/pypj/actions/workflows/unittest.yml)
 [![codecov](https://codecov.io/gh/edge-minato/pypj/branch/main/graph/badge.svg?token=YDZAMKUNS0)](https://codecov.io/gh/edge-minato/pypj)
 [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black")
+[![Downloads](https://img.shields.io/pypi/dm/fbm.svg)](https://pypistats.org/packages/pypj)
 
 `Pypj` provides you an initialized modern python project. All the basic dev package installations, their configurations, and test workflows will be done, so we can focus on coding. All you have to do is install `poetry` and hit `pypj`, name your project.
 
@@ -50,6 +51,7 @@ Do you think the directory tree looks poor? Because all configurations are aggre
 $ tree -a -L 1
 my-package/
 ├── .github
+├── .pre-commit-config.yaml
 ├── .venv
 ├── .vscode
 ├── Makefile
@@ -63,7 +65,7 @@ my-package/
 ## Requirements
 
 - `python3`
-- `poetry`
+- `poetry` [[Installation guide](https://python-poetry.org/docs/#installation)]
 
 ## Installation
 
@@ -78,35 +80,40 @@ $ pypj
 
 ┌─┐┬ ┬┌─┐┬
 ├─┘└┬┘├─┘│    python : 3.8.5
-┴   ┴ ┴ └┘    poetry : 1.1.7
+┴   ┴ ┴ └┘    poetry : 1.1.8
 
 Package name: my-package
-Do you want to custom setting? (y/N):
+Do you want to customize settings? (y/N): N
+Do you want to proceed? (y/N): y
 Task: Initialize package: my-package
-  Command: poetry new my-package ✨
-  Poetry new done 🚀
-  Command: poetry config virtualenvs.in-project true ✨
-  Command: poetry add -D black ✨
-  Command: poetry add -D pyproject-flake8 ✨
-  Command: poetry add -D mypy ✨
-  Command: poetry add -D isort ✨
-  Command: poetry add -D pytest ✨
-  Command: poetry add -D tox ✨
-  Command: poetry add -D pytest-cov ✨
-  Command: poetry add -D pytest-mock ✨
-  Command: poetry add -D tox-gh-actions ✨
-  Create : my-package ✨
-Task: Configure vscode settings
-  Create : .vscode/settings.json ✨
-Task: Configure pyproject.toml settings
-  Write  : pyproject.toml ✨
-  COnfigure: __init__.py
-Task: Create makefile
-  Create : Makefile ✨
-Task: Create github actions
-  Create : unittest.yml ✨
+      Command: poetry new my-package ✨
+      Poetry new done 🚀
+      Command: poetry config virtualenvs.in-project true ✨
+      Command: poetry add -D black ✨
+      Command: poetry add -D pyproject-flake8 ✨
+      Command: poetry add -D mypy ✨
+      Command: poetry add -D isort ✨
+      Command: poetry add -D pytest ✨
+      Command: poetry add -D tox ✨
+      Command: poetry add -D pytest-cov ✨
+      Command: poetry add -D pytest-mock ✨
+      Command: poetry add -D tox-gh-actions ✨
+      Configure: __init__.py  ✨
+      Create : my-package ✨
 Task: Create README.md
-  Create : README.md ✨
+      Create : README.md ✨
+Task: Configure pyproject.toml settings
+      Write  : pyproject.toml ✨
+Task: Create github actions
+      Create : unittest.yml ✨
+      Create : publish.yml ✨
+      Create : dependabot.yml ✨
+Task: Configure vscode settings
+      Create : .vscode/settings.json ✨
+Task: Create makefile
+      Create : Makefile ✨
+Task: Configure pre-commit
+      Create : .pre-commit-config.yaml ✨
 
 Complete! 🚀
 Let's make the world better! ✨😋🐍🌎
