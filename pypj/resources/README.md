@@ -8,11 +8,12 @@ It's ready to start coding, just proceed with it!
 
 ## Git hook
 
+See the `.pre-commit-config.yaml` to know what is configured.
 Hit `make update` and `make install` to enable configured pre-commit hooks.
 
 ## Versioning
 
-Pypj provides single sourced versioning, which means only `pyproject.toml` contains version information.
+Single sourced versioning is provided, which means only `pyproject.toml` contains version information.
 
 ## Alias
 
@@ -30,6 +31,24 @@ Some aliases are defined.
 - `make debug`: Run unittest with showing stdout
 - `make test`: Execute unittest
 - `make style`: Run code styling tools
+
+
+## Test
+
+Tests get triggered by a little bit complicated flow as following. If `tox` is not required, of course `poetry run pytest ./tests` works fine.
+
+```md
+# env: command
+
+system      : make test
+system      : poetry run tox
+poetry.venv : tox
+tox.venv    : poetry install (*1)
+tox.venv    : pytest ./tests
+-> Test runs on each venv of tox
+
+(*1): "poetry" command at system is called at venv of tox because of configuration "whitelist_externals = poetry"
+```
 
 ## CI/CD
 

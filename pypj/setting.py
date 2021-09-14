@@ -41,12 +41,12 @@ class PypjSetting(object):
 
     def customize(self) -> None:
         self.max_line_length = ask_with_default_num("Max line length (119): ", 119)
-        self.use_src = ask_yN("Use src directory?")
-        self.venv_in_pj = ask_Yn("Keep venv in project?")
-        self.guthub_actions = ask_Yn("Use github workflows?")
-        self.vscode = ask_Yn("Use vscode settings?")
-        self.precommit = ask_Yn("Use pre-commit?")
-        self.makefile = ask_Yn("Use command alias as Makefile?")
+        self.use_src = ask_yN("Use src directory")
+        self.venv_in_pj = ask_Yn("Keep venv in project")
+        self.guthub_actions = ask_Yn("Use github workflows")
+        self.vscode = ask_Yn("Use vscode settings")
+        self.precommit = ask_Yn("Use pre-commit")
+        self.makefile = ask_Yn("Use command alias as Makefile")
 
     def package_name_validate(self) -> None:
         if Path().cwd().joinpath(self.package_name).exists():
@@ -112,7 +112,7 @@ require_locked_deps = true
 install_dev_deps = true
 commands =
     poetry install -vv --no-root
-    pytest ./tests -v --cov=pypj --cov-branch --durations=0
+    pytest ./tests -v --cov=PACKAGE_DIR --cov-branch --durations=0
 [testenv:flake8]
 commands = poetry run pflake8 ./PACKAGE_DIR
 [testenv:black]

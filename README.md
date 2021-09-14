@@ -23,12 +23,12 @@ my-package/
 │       ├── publish.yml      # Tagging on GitHub triggers publishing to Pypi
 │       └── unittest.yml     # On each push and PR, execute the unittest
 ├── .pre-commit-config.yaml  # Checks format and styles of each file
-├── .venv
+├── .venv                    # venv can be outside of project directory
 ├── .vscode
 │   └── settings.json        # Format, Lint, Type check and Import sort on save
 ├── Makefile                 # Useful command alias
 ├── README.md                # How to start with pypj
-├── my-package               # Your package to be coded
+├── my-package               # Your package, can be "src"
 ├── poetry.lock
 ├── pyproject.toml           # Configured settings
 └── tests
@@ -56,7 +56,25 @@ my-package/
 
 - Max line length: `119` as default
 - Type hinting: `required`
-- And some detailed configures
+- And some detailed configurations
+
+## Customize
+
+Following settings can be customized.
+
+```
+Package name: my-package
+Do you want to customize settings? (y/N): y
+Max line length (119):
+Use src directory (y/N):
+Keep venv in project (Y/n):
+Use github workflows (Y/n):
+Use vscode settings (Y/n):
+Use pre-commit (Y/n):
+Use command alias as Makefile (Y/n):
+Are you sure? (Y/n): y
+```
+
 
 ## Other features
 
