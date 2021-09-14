@@ -62,7 +62,7 @@ autolabeler:
     branch:
       - '/version\/.+/'
   - label: "code"
-    - files:
+    files:
       - "pypj/**/*"
   - label: "dependency"
     files:
