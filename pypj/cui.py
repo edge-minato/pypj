@@ -73,8 +73,8 @@ def ask_no_empty(msg: str) -> str:
     return ask_no_empty(msg) if is_empty(r) else r
 
 
-def confirm_proceed() -> None:
-    if not ask_Yn("Are you sure? (Y/n): "):
+def confirm_proceed(msg: str = "Are you sure?") -> None:
+    if not ask_Yn(msg):
         print("Canceled.")
         sys.exit(0)
     print()

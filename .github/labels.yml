@@ -28,3 +28,8 @@
   description: "Updates or additions of dependencies"
 - name: pyproject
   color: "afeeee"
+
+# pr type
+- name: stale
+  color: "ff0000"
+  description: "PR which is not active"
