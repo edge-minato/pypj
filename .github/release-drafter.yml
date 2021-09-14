@@ -29,6 +29,50 @@ version-resolver:
     labels:
       - 'patch'
   default: patch
+autolabeler:
+  - label: "feature"
+    branch:
+      - '/feat\/.+/'
+  - label: "bugfix"
+    branch:
+      - '/fix\/.+/'
+  - label: "cicd"
+    branch:
+      - '/cicd\/.+/'
+    files:
+      - ".github/**/*"
+      - ".pre-commit-config.yml"
+      - "codedcov.yml"
+  - label: "document"
+    files:
+      - "*.md"
+      - "doc/**/*"
+    branch:
+      - '/doc\/.+/'
+  - label: "test"
+    branch:
+      - '/test\/.+/'
+  - label: "chore"
+    branch:
+      - '/chore\/.+/'
+  - label: "refactor"
+    branch:
+      - '/refactor\/.+/'
+  - label: "version"
+    branch:
+      - '/version\/.+/'
+  - label: "code"
+    - files:
+      - "pypj/**/*"
+  - label: "dependency"
+    files:
+      - "poetry.lock"
+  - label: "pyproject"
+    files:
+      - "pyproject.toml"
+  - label: "python"
+    files:
+      - "python-version"
 template: |
   ## Changes
 
