@@ -1,0 +1,30 @@
+# branch type
+- name: feature
+  color: "00ffff"
+  description: "New feature or request"
+- name: bugfix
+  color: "800000"
+  description: "Fixing existing bug"
+- name: cicd
+  color: "ffd700"
+  description: "Updates or additions of automated workflows"
+- name: documentation
+  color: "fffacd"
+  description: "Improvements or additions to documentation"
+- name: test
+  color: "00fa9a"
+  description: "Additional tests"
+- name: version
+  color: "f8f8ff"
+
+# changed file type
+- name: code
+  color: "1e90ff"
+- name: python
+  color: "ffb6c1"
+  description: "Supporting python version updates"
+- name: dependency
+  color: "9932cc"
+  description: "Updates or additions of dependencies"
+- name: pyproject
+  color: "afeeee"
