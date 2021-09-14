@@ -13,7 +13,7 @@ categories:
       - "chore"
       - "cicd"
       - "refactor"
-      - "document"
+      - "documentation"
       - "test"
       - "dependency"
 change-template: "- $TITLE (#$NUMBER)"
