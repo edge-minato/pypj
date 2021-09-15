@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -5,13 +8,31 @@ from typing import List
 
 from .cui import ask_with_default_num, ask_Yn, ask_yN
 from .environment import Version
+from .exception import Emsg, PypjError
 from .type_def import Formatter, ImportSorter, Linter, Plugin, TestFramework, TypeChecker
+
+
+class PackageName(str):
+    @staticmethod
+    def is_valid(name: str) -> bool:
+        regex = r"^[a-zA-Z][0-9a-zA-Z\-_]*"
+        return bool(re.fullmatch(regex, name))
+
+    @staticmethod
+    def strict_format(package_name: str) -> str:
+        return package_name.replace("-", "_").lower()
+
+    def __new__(cls, name: str) -> PackageName:
+        if not PackageName.is_valid(name):
+            raise PypjError(Emsg.INVALID_PACKAGE_NAME)
+        self = super().__new__(cls, PackageName.strict_format(name))
+        return self
 
 
 @dataclass
 class PypjSetting(object):
     python_version: Version
-    package_name: str
+    package_name: PackageName
     max_line_length: int = 119
     # use or not
     use_src: bool = False
@@ -37,7 +58,7 @@ class PypjSetting(object):
     )
 
     def __post_init__(self) -> None:
-        self.package_name_validate()
+        self.validate_package_dir()
 
     def customize(self) -> None:
         self.max_line_length = ask_with_default_num("Max line length (119): ", 119)
@@ -48,8 +69,8 @@ class PypjSetting(object):
         self.precommit = ask_Yn("Use pre-commit")
         self.makefile = ask_Yn("Use command alias as Makefile")
 
-    def package_name_validate(self) -> None:
-        if Path().cwd().joinpath(self.package_name).exists():
+    def validate_package_dir(self) -> None:
+        if Path().cwd().joinpath(str(self.package_name)).exists():
             print(f"ERROR: Directory {self.package_name} already exists.")
             sys.exit(1)
 
