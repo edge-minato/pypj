@@ -77,3 +77,9 @@ def dummy_command(cmd: str) -> DummyReturn:
         return DummyReturn(r.returncode)
     else:
         return DummyReturn(0)
+
+
+def dummy_input(input_list: list) -> Generator:
+    for r in input_list:
+        print(r)
+        yield r
