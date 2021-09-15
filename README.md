@@ -1,4 +1,4 @@
-![Pypj Logo](https://raw.githubusercontent.com/edge-minato/pypj/main/doc/img/logo.png)
+![pypj Logo](https://raw.githubusercontent.com/edge-minato/pypj/main/doc/img/logo.png)
 
 [![pypi version](https://img.shields.io/pypi/v/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
 [![python versions](https://img.shields.io/pypi/pyversions/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
@@ -9,11 +9,11 @@
 [![Downloads](https://pepy.tech/badge/pypj)](https://pepy.tech/project/pypj)
 [![Downloads](https://pepy.tech/badge/pypj/week)](https://pepy.tech/project/pypj)
 
-`Pypj` provides you an initialized modern python project. All the basic dev package installations, their configurations, and test workflows will be done, so we can focus on coding. All you have to do is install `poetry` and `pypj`, hit `pypj`, and name your project.
+`pypj` provides you a modern python project template. All the basic dev package installations, their configurations, and test workflows will be done, so you can focus on coding.
 
 ## What will be provided
 
-The _"Modern"_ python project template `Pypj` suggests will be provided as following directory structure. We understand some developers prefer another tools, and you can remove or customize the tools to be prepared. Most of all configurations regarding the code style tools, like formatter and linter, are aggregated in `pyproject.toml`.
+What the _"Modern"_ means is expressed as following directory structure. Some developers prefer another tools, and you can remove or customize the tools to be prepared. Most of all configurations regarding the code style tools, like formatter and linter, are aggregated in `pyproject.toml`.
 
 ```
 my-package/
@@ -60,7 +60,7 @@ my-package/
 
 ## Customize
 
-Following settings can be customized.
+Here is an actual interaction to customize.
 
 ```
 Package name: my-package
@@ -74,7 +74,6 @@ Use pre-commit (Y/n):
 Use command alias as Makefile (Y/n):
 Are you sure? (Y/n): y
 ```
-
 
 ## Other features
 
@@ -98,6 +97,8 @@ pip install pypj
 ```
 
 ## Usage
+
+See also [README.md](pypj/resources/README.md) which will be generated with `pypj` command, it shows more actual usage.
 
 ```
 $ pypj

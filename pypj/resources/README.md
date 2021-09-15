@@ -1,4 +1,4 @@
-# Getting Started with Pypj
+# Getting Started with pypj
 
 NOTE: This kick starter guide suppose the default settings of `pypj`. If you customized some configurations and disabled the features or tools, that could be difference with this guide.
 
