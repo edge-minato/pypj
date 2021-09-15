@@ -2,12 +2,12 @@
 
 [![pypi version](https://img.shields.io/pypi/v/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
 [![python versions](https://img.shields.io/pypi/pyversions/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
-[![format](https://img.shields.io/pypi/format/pypj.svg?style=flat)](https://pypi.org/pypi/pypj/)
 [![license](https://img.shields.io/pypi/l/pypj.svg?style=flat)](https://github.com/edge-minato/pypj/blob/master/LICENSE)
 [![Unittest](https://github.com/edge-minato/pypj/actions/workflows/unittest.yml/badge.svg)](https://github.com/edge-minato/pypj/actions/workflows/unittest.yml)
 [![codecov](https://codecov.io/gh/edge-minato/pypj/branch/main/graph/badge.svg?token=YDZAMKUNS0)](https://codecov.io/gh/edge-minato/pypj)
 [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black")
-[![Downloads](https://img.shields.io/pypi/dm/fbm.svg)](https://pypistats.org/packages/pypj)
+[![Downloads](https://pepy.tech/badge/pypj)](https://pepy.tech/project/pypj)
+[![Downloads](https://pepy.tech/badge/pypj/week)](https://pepy.tech/project/pypj)
 
 `Pypj` provides you an initialized modern python project. All the basic dev package installations, their configurations, and test workflows will be done, so we can focus on coding. All you have to do is install `poetry` and `pypj`, hit `pypj`, and name your project.
 
