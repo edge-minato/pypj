@@ -70,7 +70,7 @@ def ask_yN(msg: str) -> bool:
 
 def ask_no_empty(msg: str) -> str:
     r = ask(msg)
-    return ask_no_empty(msg) if is_empty(r) else r
+    return r if not is_empty(r) else ask_no_empty(msg)
 
 
 def confirm_proceed(msg: str = "Are you sure?") -> None:

@@ -6,7 +6,7 @@ from .setting import PypjSetting
 class PypjFilePath(object):
     def __init__(self, pwd: Path, setting: PypjSetting) -> None:
         root = pwd.resolve()
-        self.root: Path = root  # as absolute path
+        self.root: Path = root  # pwd as absolute path
         self.package_dir: Path = root.joinpath(setting.package_name)
         src_dir = "src" if setting.use_src else setting.package_name
         self.package_src_dir: Path = self.package_dir.joinpath(src_dir)
