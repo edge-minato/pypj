@@ -1,5 +1,5 @@
-name-template: 'v$RESOLVED_VERSION'
-tag-template: 'v$RESOLVED_VERSION'
+name-template: '$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
 categories:
   - title: "🚀 Features"
     labels:
@@ -8,14 +8,23 @@ categories:
     labels:
       - "bugfix"
       - "bug"
+  - title: "🧪 Test"
+    labels:
+      - "test"
+  - title: "📘 Documentation"
+    labels:
+      - "documentation"
+      - "document"
+  - title: "⚙️ CI/CD"
+    labels:
+      - "cicd"
+  - title: "🔗 Dependency"
+    labels:
+      - "dependency"
   - title: "🧰 Maintenance"
     labels:
       - "chore"
-      - "cicd"
       - "refactor"
-      - "documentation"
-      - "test"
-      - "dependency"
 change-template: "- $TITLE (#$NUMBER)"
 change-title-escapes: '\<*_&'
 version-resolver:
