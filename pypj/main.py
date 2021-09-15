@@ -10,8 +10,13 @@ from .const import ASCII_ART, GITHUB_URL
 from .environment import Environment
 from .exception import PypjError
 from .file_path import PypjFilePath
-from .setting import PypjSetting
+from .setting import PackageName, PypjSetting
 from .task import Poetry, TaskManager
+
+
+def ask_package_name() -> PackageName:
+    r = ask_no_empty("Package name: ")
+    return PackageName(r) if PackageName.is_valid(r) else ask_package_name()
 
 
 def process() -> None:
@@ -19,8 +24,7 @@ def process() -> None:
     env = Environment()
     print(ASCII_ART.format(python=env.python, poetry=env.poetry))
     # configure
-    package_name = ask_no_empty("Package name: ")
-    setting = PypjSetting(env.python, package_name)
+    setting = PypjSetting(python_version=env.python, package_name=ask_package_name())
     if ask_yN("Do you want to customize settings?"):
         setting.customize()
     pypj_file_path = PypjFilePath(Path().cwd(), setting)

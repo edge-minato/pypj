@@ -13,6 +13,7 @@ class Emsg(Enum):
     FAILED_POETRY_ADD = "Failed to add package via poetry."
     RESOURCE_NOT_FOUND = "Resource does not exist. Please report this issue."
     PACKAGE_NOT_FOUND = "The target package does not exist."
+    INVALID_PACKAGE_NAME = "The package name is invalid format"
 
     def __str__(self) -> str:
         return self.name

@@ -275,3 +275,9 @@ style:
 - Not supported: `3.6` or less
 
 **NOTE**: According to [Status of Python branches](https://devguide.python.org/#status-of-python-branches), the EoL of Python 3.6 is `2021-12-23`.
+
+
+## FAQ
+
+* Is there any restrictions regarding the package naming?
+  * -> A name of python package is defined at [PEP-008 #Package and Module Names](https://www.python.org/dev/peps/pep-0008/#package-and-module-names) and it can be expressed as regex: `/^[a-zA-Z][0-9a-zA-Z\-_]*/`. `pypj` follows this rule.
