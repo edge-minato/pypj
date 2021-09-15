@@ -1,6 +1,8 @@
+import pytest
 from pytest_mock import MockerFixture
 
 from pypj import cui
+from tests.conftest import dummy_input
 
 YES = ["y", "Y", "yes", "Yes", "YES"]
 NO = ["n", "N", "no", "No", "NO"]
@@ -50,10 +52,18 @@ def test_ask_with_default(mocker: MockerFixture) -> None:
 
 
 def test_ask_with_default_num(mocker: MockerFixture) -> None:
+
+    dummy_input_1 = dummy_input(["abc", ""])
+    dummy_input_2 = dummy_input(["abc", "123"])
+
     mocker.patch("builtins.input", return_value="")
     assert cui.ask_with_default_num("test", 100) == 100
     mocker.patch("builtins.input", return_value="50")
     assert cui.ask_with_default_num("test", 100) == 50
+    mocker.patch("builtins.input", side_effect=dummy_input_1)
+    assert cui.ask_with_default_num("test", 100) == 100
+    mocker.patch("builtins.input", side_effect=dummy_input_2)
+    assert cui.ask_with_default_num("test", 100) == 123
 
 
 def test_ask_yn(mocker: MockerFixture) -> None:
@@ -84,3 +94,10 @@ def test_ask_yN(mocker: MockerFixture) -> None:
     assert cui.ask_yN("test") is True
     mocker.patch("builtins.input", return_value="N")
     assert cui.ask_yN("test") is False
+
+
+def test_confirm_proceed(mocker: MockerFixture) -> None:
+    mocker.patch("builtins.input", return_value="N")
+    with pytest.raises(SystemExit) as e:
+        cui.confirm_proceed()
+        assert e.value.code == 0  # type: ignore
