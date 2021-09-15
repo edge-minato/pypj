@@ -43,7 +43,7 @@ autolabeler:
       - ".github/**/*"
       - ".pre-commit-config.yml"
       - "codedcov.yml"
-  - label: "document"
+  - label: "documentation"
     files:
       - "*.md"
       - "doc/**/*"
