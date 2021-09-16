@@ -2,14 +2,14 @@ from pathlib import Path
 
 from pypj.environment import Version
 from pypj.file_path import PypjFilePath
-from pypj.setting import PypjSetting
+from pypj.setting import PackageName, PypjSetting
 from pypj.task.makefile import Makefile
 from tests.conftest import prepare_dir
 
 
 def test_makefile() -> None:
     # prepare
-    PACKAGE = "test_makefile"
+    PACKAGE = PackageName("test_makefile")
     package_dir = prepare_dir(PACKAGE)
     # execute
     setting = PypjSetting(Version("0.0.0"), PACKAGE)
@@ -24,7 +24,7 @@ def test_makefile() -> None:
 
 def test_makefile_wo_precommit() -> None:
     # prepare
-    PACKAGE = "test_makefile_wo_precommit"
+    PACKAGE = PackageName("test_makefile_wo_precommit")
     package_dir = prepare_dir(PACKAGE)
     # execute
     setting = PypjSetting(Version("0.0.0"), PACKAGE)

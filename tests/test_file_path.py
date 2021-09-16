@@ -3,7 +3,7 @@ from pathlib import Path
 from pytest_mock import MockFixture
 
 from pypj.file_path import PypjFilePath
-from pypj.setting import PypjSetting, Version
+from pypj.setting import PackageName, PypjSetting, Version
 
 
 def path(add: str) -> Path:
@@ -14,13 +14,14 @@ def test_pypj_file_path(mocker: MockFixture) -> None:
     python_version = Version("3.8.0")
     setting = PypjSetting(
         python_version=python_version,
-        package_name="package",
+        package_name=PackageName("package"),
         max_line_length=100,
         use_src=False,
         venv_in_pj=False,
     )
     root = Path().cwd()
     fp = PypjFilePath(root, setting)
+    assert fp.root == root
     assert fp.package_dir == path("/package")
     assert fp.package_src_dir == path("/package/package")
     assert fp.package_init == path("/package/package/__init__.py")
@@ -35,3 +36,5 @@ def test_pypj_file_path(mocker: MockFixture) -> None:
     assert fp.wf_unittest == path("/package/.github/workflows/unittest.yml")
     assert fp.wf_publish == path("/package/.github/workflows/publish.yml")
     assert fp.dependabot == path("/package/.github/dependabot.yml")
+    assert fp.precommit == path("/package/.pre-commit-config.yaml")
+    assert len(vars(fp)) == 16  # to check additional fields

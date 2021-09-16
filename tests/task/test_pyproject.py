@@ -2,14 +2,14 @@ from pathlib import Path
 
 from pypj.environment import Version
 from pypj.file_path import PypjFilePath
-from pypj.setting import PypjSetting
+from pypj.setting import PackageName, PypjSetting
 from pypj.task.pyproject import Pyproject
 from tests.conftest import prepare_dir, validate_toml
 
 
 def test_pyproject() -> None:
     # prepare
-    PACKAGE = "test_pyproject"
+    PACKAGE = PackageName("test_pyproject")
     package_dir = prepare_dir(PACKAGE)
     pyproject = package_dir.joinpath("pyproject.toml")
     pyproject.touch()

@@ -52,17 +52,13 @@ def test_ask_with_default(mocker: MockerFixture) -> None:
 
 
 def test_ask_with_default_num(mocker: MockerFixture) -> None:
-
-    dummy_input_1 = dummy_input(["abc", ""])
-    dummy_input_2 = dummy_input(["abc", "123"])
-
     mocker.patch("builtins.input", return_value="")
     assert cui.ask_with_default_num("test", 100) == 100
     mocker.patch("builtins.input", return_value="50")
     assert cui.ask_with_default_num("test", 100) == 50
-    mocker.patch("builtins.input", side_effect=dummy_input_1)
+    mocker.patch("builtins.input", side_effect=dummy_input(["abc", ""]))
     assert cui.ask_with_default_num("test", 100) == 100
-    mocker.patch("builtins.input", side_effect=dummy_input_2)
+    mocker.patch("builtins.input", side_effect=dummy_input(["abc", "123"]))
     assert cui.ask_with_default_num("test", 100) == 123
 
 

@@ -2,14 +2,14 @@ from pathlib import Path
 
 from pypj.environment import Version
 from pypj.file_path import PypjFilePath
-from pypj.setting import PypjSetting
+from pypj.setting import PackageName, PypjSetting
 from pypj.task.readme import Readme
 from tests.conftest import prepare_dir
 
 
 def test_readme() -> None:
     # prepare
-    PACKAGE = "test_readme"
+    PACKAGE = PackageName("test_readme")
     package_dir = prepare_dir(PACKAGE)
     readme_rst = package_dir.joinpath("README.rst")
     readme_rst.touch()

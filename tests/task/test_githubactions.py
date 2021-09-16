@@ -2,14 +2,14 @@ from pathlib import Path
 
 from pypj.environment import Version
 from pypj.file_path import PypjFilePath
-from pypj.setting import PypjSetting
+from pypj.setting import PackageName, PypjSetting
 from pypj.task.githubactions import GithubActions
 from tests.conftest import prepare_dir, validate_yaml
 
 
 def test_githubactions() -> None:
     # prepare
-    PACKAGE = "test_githubactions"
+    PACKAGE = PackageName("test_githubactions")
     package_dir = prepare_dir(PACKAGE)
     # execute
     setting = PypjSetting(Version("0.0.0"), PACKAGE)

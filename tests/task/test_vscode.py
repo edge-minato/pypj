@@ -2,14 +2,14 @@ from pathlib import Path
 
 from pypj.environment import Version
 from pypj.file_path import PypjFilePath
-from pypj.setting import PypjSetting
+from pypj.setting import PackageName, PypjSetting
 from pypj.task.vscode import Vscode
 from tests.conftest import prepare_dir, validate_jsonc
 
 
 def test_vscode() -> None:
     # prepare
-    PACKAGE = "test_vscode"
+    PACKAGE = PackageName("test_vscode")
     package_dir = prepare_dir(PACKAGE)
     vscode_dir = package_dir.joinpath(".vscode")
     vscode_setting = vscode_dir.joinpath("settings.json")

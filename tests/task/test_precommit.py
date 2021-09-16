@@ -2,14 +2,14 @@ from pathlib import Path
 
 from pypj.environment import Version
 from pypj.file_path import PypjFilePath
-from pypj.setting import PypjSetting
+from pypj.setting import PackageName, PypjSetting
 from pypj.task import PreCommit
 from tests.conftest import prepare_dir
 
 
 def test_precommit() -> None:
     # prepare
-    PACKAGE = "test_precommit"
+    PACKAGE = PackageName("test_precommit")
     package_dir = prepare_dir(PACKAGE)
     precommit = package_dir.joinpath(".pre-commit-config.yaml")
     # execute
