@@ -96,11 +96,11 @@ commands =
     poetry install -vv --no-root
     pytest ./tests -v --cov=pypj --cov-branch --durations=0
 [testenv:flake8]
-commands = poetry run pflake8 ./pypj
+commands = poetry run pflake8 --statistics ./pypj ./tests
 [testenv:black]
-commands = poetry run black ./pypj
+commands = poetry run black ./pypj ./tests
 [testenv:mypy]
-commands = poetry run mypy ./pypj
+commands = poetry run mypy ./pypj ./tests
 [testenv:isort]
-commands = poetry run isort ./pypj
+commands = poetry run isort ./pypj ./tests
 """

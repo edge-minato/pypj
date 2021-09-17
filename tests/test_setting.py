@@ -1,11 +1,10 @@
-from collections import deque
-
 import pytest
 from pytest_mock import MockerFixture
 
 from pypj.environment import Version
 from pypj.exception import PypjError
 from pypj.setting import PackageName, PypjSetting
+from tests.conftest import dummy_input
 
 VER = Version("0.0.0")
 
@@ -47,22 +46,17 @@ def test_package_dir_validation() -> None:
 
 
 def test_default(mocker: MockerFixture) -> None:
-    r = deque(
-        [  # try not default pattern
-            "",  # max line length
-            "",  # use src dir
-            "",  # venv in pj
-            "",  # github workflow
-            "",  # vscode setting
-            "",  # precommit
-            "",  # Makefile
-        ]
-    )
+    inp = [  # try not default pattern
+        "",  # max line length
+        "",  # use src dir
+        "",  # venv in pj
+        "",  # github workflow
+        "",  # vscode setting
+        "",  # precommit
+        "",  # Makefile
+    ]
 
-    def dummy_input() -> str:
-        return r.popleft()
-
-    mocker.patch("builtins.input", side_effect=dummy_input)
+    mocker.patch("builtins.input", side_effect=dummy_input(inp))
     setting = PypjSetting(VER, PackageName("dummy_package"))
     setting.customize()
     assert setting.max_line_length == 119
@@ -75,22 +69,17 @@ def test_default(mocker: MockerFixture) -> None:
 
 
 def test_customize(mocker: MockerFixture) -> None:
-    r = deque(
-        [  # try not default pattern
-            "999",  # max line length
-            "Y",  # use src dir
-            "N",  # venv in pj
-            "N",  # github workflow
-            "N",  # vscode setting
-            "N",  # precommit
-            "N",  # Makefile
-        ]
-    )
+    inp = [  # try not default pattern
+        "999",  # max line length
+        "Y",  # use src dir
+        "N",  # venv in pj
+        "N",  # github workflow
+        "N",  # vscode setting
+        "N",  # precommit
+        "N",  # Makefile
+    ]
 
-    def dummy_input() -> str:
-        return r.popleft()
-
-    mocker.patch("builtins.input", side_effect=dummy_input)
+    mocker.patch("builtins.input", side_effect=dummy_input(inp))
     setting = PypjSetting(VER, PackageName("dummy_package"))
     setting.customize()
     assert setting.max_line_length == 999

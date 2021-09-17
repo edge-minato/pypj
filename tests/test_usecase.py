@@ -1,11 +1,10 @@
-from collections import deque
 from os import chdir
 from pathlib import Path
 
 from pytest_mock import MockFixture
 
 from pypj import main
-from tests.conftest import dummy_command
+from tests.conftest import dummy_command, dummy_input
 
 
 def src_dir_exists(package_dir: Path) -> bool:
@@ -41,20 +40,13 @@ def github_exists(package_dir: Path) -> bool:
 
 def test_default(mocker: MockFixture) -> None:
     PACKAGE = "tmp_package_default"
-    user_input = deque(
-        [
-            PACKAGE,  # package name
-            "N",  # customize
-            "Y",  # confirmation
-        ]
-    )
+    inp = [
+        PACKAGE,  # package name
+        "N",  # customize
+        "Y",  # confirmation
+    ]
 
-    def dummy_input() -> str:
-        r = user_input.popleft()
-        print(r)
-        return r
-
-    mocker.patch("builtins.input", side_effect=dummy_input)
+    mocker.patch("builtins.input", side_effect=dummy_input(inp))
     mocker.patch("pypj.task.poetry.Poetry._Poetry__command", side_effect=dummy_command)
     # pushd
     cwd = Path().cwd().resolve()
@@ -78,27 +70,20 @@ def test_default(mocker: MockFixture) -> None:
 
 def test_customize(mocker: MockFixture) -> None:
     PACKAGE = "tmp_package_use_src"
-    user_input = deque(
-        [
-            PACKAGE,  # package name
-            "Y",  # customize
-            "999",  # max line length
-            "Y",  # use src dir
-            "Y",  # venv in pj
-            "N",  # github workflow
-            "N",  # vscode setting
-            "N",  # precommit
-            "N",  # Makefile
-            "Y",  # confirmation
-        ]
-    )
+    inp = [
+        PACKAGE,  # package name
+        "Y",  # customize
+        "999",  # max line length
+        "Y",  # use src dir
+        "Y",  # venv in pj
+        "N",  # github workflow
+        "N",  # vscode setting
+        "N",  # precommit
+        "N",  # Makefile
+        "Y",  # confirmation
+    ]
 
-    def dummy_input() -> str:
-        r = user_input.popleft()
-        print(r)
-        return r
-
-    mocker.patch("builtins.input", side_effect=dummy_input)
+    mocker.patch("builtins.input", side_effect=dummy_input(inp))
     mocker.patch("pypj.task.poetry.Poetry._Poetry__command", side_effect=dummy_command)
     # pushd
     cwd = Path().cwd().resolve()

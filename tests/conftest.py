@@ -9,6 +9,8 @@ import pytest
 import toml  # type: ignore
 import yaml  # type: ignore
 
+from pypj.exception import Emsg, PypjError
+
 
 def prepare_tmp_dir(tmp: Path) -> None:
     if tmp.exists():
@@ -83,3 +85,7 @@ def dummy_input(input_list: list) -> Generator:
     for r in input_list:
         print(r)
         yield r
+
+
+def pypj_error() -> None:
+    raise PypjError(Emsg.OS_NOT_SUPPORTED)
