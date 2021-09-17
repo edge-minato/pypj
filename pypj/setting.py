@@ -135,12 +135,12 @@ commands =
     poetry install -vv --no-root
     pytest ./tests -v --cov=PACKAGE_DIR --cov-branch --durations=0
 [testenv:flake8]
-commands = poetry run pflake8 ./PACKAGE_DIR
+commands = poetry run pflake8 --statistics ./PACKAGE_DIR ./tests
 [testenv:black]
-commands = poetry run black ./PACKAGE_DIR
+commands = poetry run black ./PACKAGE_DIR ./tests
 [testenv:mypy]
-commands = poetry run mypy ./PACKAGE_DIR
+commands = poetry run mypy ./PACKAGE_DIR ./tests
 [testenv:isort]
-commands = poetry run isort ./PACKAGE_DIR
+commands = poetry run isort ./PACKAGE_DIR ./tests
 \"\"\"
 """
