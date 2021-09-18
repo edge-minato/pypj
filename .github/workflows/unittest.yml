@@ -44,16 +44,16 @@ jobs:
         run: poetry run pytest ./tests -v --cov=pypj --cov-branch --cov-report=xml
 
       - name: Test with linter
-        run: poetry run pflake8 ./pypj
+        run: poetry run pflake8 --statistics ./pypj ./tests
 
       - name: Test with formatter
-        run: poetry run black ./pypj
+        run: poetry run black ./pypj ./tests
 
       - name: Test with type checker
-        run: poetry run mypy ./pypj
+        run: poetry run mypy ./pypj ./tests
 
       - name: Test with import sorter
-        run: poetry run isort ./pypj
+        run: poetry run isort ./pypj ./tests
 
       - name: Upload coverage to Codecov
         if: ${{ matrix.python-version==3.9 }}
