@@ -25,6 +25,7 @@ class Poetry(Task):
         self.__configure_poetry()
         chdir(self.path.package_dir)
         self.__add_dev_dependency()
+        self.__add_dependency()
         self.__overwrite_files()
         print(f"{INDENT}Create : {self.setting.package_name} {Emoji.OK}")
         self.done()
@@ -47,6 +48,15 @@ class Poetry(Task):
         r = self.__command(self.venv_in_pj_cmd)
         if r.returncode != 0:
             raise TaskError(f"Failed to '{self.venv_in_pj_cmd}'")
+
+    def __add_dependency(self) -> None:
+        ADD_CMD = "poetry add {}"
+        packages = ["single-source"]
+        command_list = [ADD_CMD.format(package) for package in packages]
+        for cmd in command_list:
+            r = self.__command(cmd)
+            if r.returncode != 0:
+                raise TaskError(f"Failed to add dependency: {cmd}")
 
     def __add_dev_dependency(self) -> None:
         ADD_CMD = "poetry add -D {}"

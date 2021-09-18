@@ -1,5 +1,15 @@
 # Getting Started with pypj
 
+First of all, what should be done is creating and updating a venv. If the directory is not initialized with `git`, `make install` may fail because it fails to install `pre-commit` hooks.
+
+```sh
+# git init # if it is not done
+make install
+make update
+# try test
+make test
+```
+
 NOTE: This kick starter guide suppose the default settings of `pypj`. If you customized some configurations and disabled the features or tools, that could be difference with this guide.
 
 ## Coding
