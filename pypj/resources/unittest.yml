@@ -1,6 +1,3 @@
-# The original unittest workflow is useful as references
-# https://github.com/python-poetry/poetry/blob/master/.github/workflows/main.yml
-
 name: Unittest
 on:
   push:
@@ -19,28 +16,36 @@ jobs:
         platform: [ubuntu-latest]
         python-version: [PYTHON_VERSION]
     steps:
-      - uses: actions/checkout@v2
-      - run: git branch
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Bootstrap poetry
-        shell: bash
-        run: |
-          curl -sL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py \
-            | python - -y
-      - name: Update PATH
-        shell: bash
-        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
-      - name: Configure poetry
-        shell: bash
-        run: poetry config virtualenvs.in-project true
+
+      - name: Install poetry
+        run: pip install poetry
+
       - name: Install dependencies
         shell: bash
         run: poetry install
-      - name: Test with tox
-        run: poetry run pytest -v --cov=pypj --cov-branch --cov-report=xml
+
+      - name: Unit test
+        run: poetry run pytest ./tests -v --cov=pypj --cov-branch --cov-report=xml
+
+      - name: Test with linter
+        run: poetry run pflake8 --statistics ./PACKAGE_NAME ./tests
+
+      - name: Test with formatter
+        run: poetry run black ./PACKAGE_NAME ./tests
+
+      - name: Test with type checker
+        run: poetry run mypy ./PACKAGE_NAME ./tests
+
+      - name: Test with import sorter
+        run: poetry run isort ./PACKAGE_NAME ./tests
+
       #- name: Upload coverage to Codecov
       #  if: ${{ matrix.python-version==PYTHON_VERSION }}
       #  uses: codecov/codecov-action@v1

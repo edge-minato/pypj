@@ -30,3 +30,6 @@ def test_githubactions() -> None:
     assert validate_yaml(dependabot)
     assert validate_yaml(unittest)
     assert validate_yaml(publish)
+    with unittest.open(mode="r") as f:
+        ut = f.read()
+    assert "test_githubactions" in ut
