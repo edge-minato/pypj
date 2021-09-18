@@ -59,10 +59,12 @@ class PypjSetting(object):
 
     def __post_init__(self) -> None:
         self.validate_package_dir()
+        self.src_dir: str = self.package_name  # as default
 
     def customize(self) -> None:
         self.max_line_length = ask_with_default_num("Max line length (119): ", 119)
         self.use_src = ask_yN("Use src directory")
+        self.src_dir = "src" if self.use_src else self.package_name
         self.venv_in_pj = ask_Yn("Keep venv in project")
         self.guthub_actions = ask_Yn("Use github workflows")
         self.vscode = ask_Yn("Use vscode settings")
