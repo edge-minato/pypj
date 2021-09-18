@@ -1,8 +1,7 @@
 name: Upload Python Package
 on:
-  push:
-    tags:
-      - "*.*.*"
+  release:
+    types: [published]
 jobs:
   publish:
     runs-on: ubuntu-latest
