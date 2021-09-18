@@ -25,7 +25,7 @@ class Poetry(Task):
         self.__configure_poetry()
         chdir(self.path.package_dir)
         self.__add_dev_dependency()
-        self.__overwrite_init()
+        self.__overwrite_files()
         print(f"{INDENT}Create : {self.setting.package_name} {Emoji.OK}")
         self.done()
 
@@ -68,8 +68,14 @@ class Poetry(Task):
             if r.returncode != 0:
                 raise TaskError(f"Failed to add dev dependency: {cmd}")
 
-    def __overwrite_init(self) -> None:
-        init = get_my_resource("init.py")
+    def __overwrite_files(self) -> None:
+        # __init__.py
+        init_path = "package/init.py"
+        init = get_my_resource(init_path)
         with self.path.package_init.open(mode="w") as f:
             f.write(init)
-        print(f"{INDENT}Configure: __init__.py  {Emoji.OK}")
+        # test_{package}.py
+        test_path = "package/test_package.py"
+        test = get_my_resource(test_path).replace("PACKAGE_NAME", self.setting.package_name)
+        with self.path.package_test.open(mode="w") as f:
+            f.write(test)
