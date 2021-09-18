@@ -25,6 +25,7 @@ def test_pypj_file_path(mocker: MockFixture) -> None:
     assert fp.package_dir == path("/package")
     assert fp.package_src_dir == path("/package/package")
     assert fp.package_init == path("/package/package/__init__.py")
+    assert fp.package_test == path("/package/tests/test_package.py")
     assert fp.pyproject == path("/package/pyproject.toml")
     assert fp.vscode_dir == path("/package/.vscode")
     assert fp.vscode_settings_json == path("/package/.vscode/settings.json")
@@ -37,4 +38,4 @@ def test_pypj_file_path(mocker: MockFixture) -> None:
     assert fp.wf_publish == path("/package/.github/workflows/publish.yml")
     assert fp.dependabot == path("/package/.github/dependabot.yml")
     assert fp.precommit == path("/package/.pre-commit-config.yaml")
-    assert len(vars(fp)) == 16  # to check additional fields
+    assert len(vars(fp)) == 17  # to check additional fields

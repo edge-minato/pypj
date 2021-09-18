@@ -6,11 +6,13 @@ from .setting import PypjSetting
 class PypjFilePath(object):
     def __init__(self, pwd: Path, setting: PypjSetting) -> None:
         root = pwd.resolve()
+        package_name = setting.package_name
         self.root: Path = root  # pwd as absolute path
-        self.package_dir: Path = root.joinpath(setting.package_name)
-        src_dir = "src" if setting.use_src else setting.package_name
+        self.package_dir: Path = root.joinpath(package_name)
+        src_dir = "src" if setting.use_src else package_name
         self.package_src_dir: Path = self.package_dir.joinpath(src_dir)
         self.package_init: Path = self.package_src_dir.joinpath("__init__.py")
+        self.package_test: Path = self.package_dir.joinpath("tests").joinpath(f"test_{package_name}.py")
         self.pyproject: Path = self.package_dir.joinpath("pyproject.toml")
         self.vscode_dir: Path = self.package_dir.joinpath(".vscode")
         self.vscode_settings_json: Path = self.vscode_dir.joinpath("settings.json")
