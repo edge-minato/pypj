@@ -8,23 +8,22 @@ class PypjFilePath(object):
         root = pwd.resolve()
         package_name = setting.package_name
         self.root: Path = root  # pwd as absolute path
-        self.package_dir: Path = root.joinpath(package_name)
-        src_dir = "src" if setting.use_src else package_name
-        self.package_src_dir: Path = self.package_dir.joinpath(src_dir)
+        self.package_dir = PD = root.joinpath(package_name)  # PD as alias
+        self.package_src_dir: Path = PD.joinpath(setting.src_dir)
         self.package_init: Path = self.package_src_dir.joinpath("__init__.py")
-        self.package_test: Path = self.package_dir.joinpath("tests").joinpath(f"test_{package_name}.py")
-        self.pyproject: Path = self.package_dir.joinpath("pyproject.toml")
-        self.vscode_dir: Path = self.package_dir.joinpath(".vscode")
+        self.package_test: Path = PD.joinpath("tests").joinpath(f"test_{package_name}.py")
+        self.pyproject: Path = PD.joinpath("pyproject.toml")
+        self.vscode_dir: Path = PD.joinpath(".vscode")
         self.vscode_settings_json: Path = self.vscode_dir.joinpath("settings.json")
-        self.makefile: Path = self.package_dir.joinpath("Makefile")
-        self.readme_md: Path = self.package_dir.joinpath("README.md")
-        self.readme_rst: Path = self.package_dir.joinpath("README.rst")
-        self.github_dir: Path = self.package_dir.joinpath(".github")
+        self.makefile: Path = PD.joinpath("Makefile")
+        self.readme_md: Path = PD.joinpath("README.md")
+        self.readme_rst: Path = PD.joinpath("README.rst")
+        self.github_dir: Path = PD.joinpath(".github")
         self.github_workflow_dir: Path = self.github_dir.joinpath("workflows")
         self.wf_unittest: Path = self.github_workflow_dir.joinpath("unittest.yml")
         self.wf_publish: Path = self.github_workflow_dir.joinpath("publish.yml")
         self.dependabot: Path = self.github_dir.joinpath("dependabot.yml")
-        self.precommit: Path = self.package_dir.joinpath(".pre-commit-config.yaml")
+        self.precommit: Path = PD.joinpath(".pre-commit-config.yaml")
 
     def print(self) -> None:
         print(vars(self))

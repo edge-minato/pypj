@@ -35,16 +35,16 @@ jobs:
         run: poetry run pytest ./tests -v --cov=pypj --cov-branch --cov-report=xml
 
       - name: Test with linter
-        run: poetry run pflake8 --statistics ./PACKAGE_NAME ./tests
+        run: poetry run pflake8 --statistics ./PACKAGE_SRC_DIR ./tests
 
       - name: Test with formatter
-        run: poetry run black ./PACKAGE_NAME ./tests
+        run: poetry run black ./PACKAGE_SRC_DIR ./tests
 
       - name: Test with type checker
-        run: poetry run mypy ./PACKAGE_NAME ./tests
+        run: poetry run mypy ./PACKAGE_SRC_DIR ./tests
 
       - name: Test with import sorter
-        run: poetry run isort ./PACKAGE_NAME ./tests
+        run: poetry run isort ./PACKAGE_SRC_DIR ./tests
 
       #- name: Upload coverage to Codecov
       #  if: ${{ matrix.python-version==PYTHON_VERSION }}

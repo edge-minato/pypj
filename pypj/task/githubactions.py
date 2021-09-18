@@ -19,7 +19,7 @@ class GithubActions(Task):
         # write workflows *.yml
         unittest = get_my_resource("unittest.yml")
         unittest = unittest.replace("PYTHON_VERSION", self.setting.python_version.short)
-        unittest = unittest.replace("PACKAGE_NAME", self.setting.package_name)
+        unittest = unittest.replace("PACKAGE_SRC_DIR", self.setting.src_dir)
         publish = get_my_resource("publish.yml")
         publish = publish.replace("PYTHON_VERSION", self.setting.python_version.short)
         dependabot = get_my_resource("dependabot.yml")
