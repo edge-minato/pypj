@@ -61,6 +61,8 @@ class Poetry(Task):
         command_list = [ADD_CMD.format(package) for package in dev_packages]
         for plugin in self.setting.plugin:
             command_list.append(ADD_CMD.format(plugin))
+        if self.setting.precommit:
+            command_list.append(ADD_CMD.format("pre-commit"))
         for cmd in command_list:
             r = self.__command(cmd)
             if r.returncode != 0:
