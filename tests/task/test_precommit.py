@@ -4,7 +4,7 @@ from pypj.environment import Version
 from pypj.file_path import PypjFilePath
 from pypj.setting import PackageName, PypjSetting
 from pypj.task import PreCommit
-from tests.conftest import prepare_dir
+from tests.conftest import does_contain_specific_words, prepare_dir
 
 
 def test_precommit() -> None:
@@ -19,3 +19,6 @@ def test_precommit() -> None:
     # assert
     assert precommit.exists()
     assert precommit.stat().st_size > 0
+    with precommit.open(mode="r") as f:
+        content = f.read()
+    assert not does_contain_specific_words(content)

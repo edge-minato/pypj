@@ -4,7 +4,7 @@ from pypj.environment import Version
 from pypj.file_path import PypjFilePath
 from pypj.setting import PackageName, PypjSetting
 from pypj.task.githubactions import GithubActions
-from tests.conftest import prepare_dir, validate_yaml
+from tests.conftest import does_contain_specific_words, prepare_dir, validate_yaml
 
 
 def test_githubactions() -> None:
@@ -31,5 +31,12 @@ def test_githubactions() -> None:
     assert validate_yaml(unittest)
     assert validate_yaml(publish)
     with unittest.open(mode="r") as f:
-        ut = f.read()
-    assert "test_githubactions" in ut
+        content = f.read()
+    assert PACKAGE in content
+    assert "PACKAGE_SRC_DIR" not in content
+    assert not does_contain_specific_words(content)
+
+    with publish.open(mode="r") as f:
+        content = f.read()
+    assert "PACKAGE_SRC_DIR" not in content
+    assert not does_contain_specific_words(content)

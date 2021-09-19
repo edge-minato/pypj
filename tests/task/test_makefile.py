@@ -4,7 +4,7 @@ from pypj.environment import Version
 from pypj.file_path import PypjFilePath
 from pypj.setting import PackageName, PypjSetting
 from pypj.task.makefile import Makefile
-from tests.conftest import prepare_dir
+from tests.conftest import does_contain_specific_words, prepare_dir
 
 
 def test_makefile() -> None:
@@ -19,7 +19,11 @@ def test_makefile() -> None:
     makefile = package_dir.joinpath("Makefile")
     assert makefile.exists()
     with makefile.open(mode="r") as f:
-        assert "pre-commit" in f.read()
+        content = f.read()
+    assert "pre-commit" in content
+    assert PACKAGE in content
+    assert "PACKAGE_SRC_DIR" not in content
+    assert not does_contain_specific_words(content)
 
 
 def test_makefile_wo_precommit() -> None:
@@ -35,4 +39,8 @@ def test_makefile_wo_precommit() -> None:
     makefile = package_dir.joinpath("Makefile")
     assert makefile.exists()
     with makefile.open(mode="r") as f:
-        assert "pre-commit" not in f.read()
+        content = f.read()
+    assert "pre-commit" not in content
+    assert PACKAGE in content
+    assert "PACKAGE_SRC_DIR" not in content
+    assert not does_contain_specific_words(content)
