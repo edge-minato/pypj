@@ -89,3 +89,13 @@ def dummy_input(input_list: list) -> Generator:
 
 def pypj_error() -> None:
     raise PypjError(Emsg.OS_NOT_SUPPORTED)
+
+
+WORDS = ["pypj", "edge", "minato"]
+
+
+def does_contain_specific_words(content: str) -> bool:
+    for w in WORDS:
+        if w in content:
+            return True
+    return False

@@ -4,7 +4,7 @@ from pypj.environment import Version
 from pypj.file_path import PypjFilePath
 from pypj.setting import PackageName, PypjSetting
 from pypj.task.vscode import Vscode
-from tests.conftest import prepare_dir, validate_jsonc
+from tests.conftest import does_contain_specific_words, prepare_dir, validate_jsonc
 
 
 def test_vscode() -> None:
@@ -21,3 +21,6 @@ def test_vscode() -> None:
     assert vscode_dir.is_dir()
     assert vscode_setting.exists()
     assert validate_jsonc(vscode_setting)
+    with vscode_setting.open(mode="r") as f:
+        content = f.read()
+    assert not does_contain_specific_words(content)

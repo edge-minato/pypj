@@ -4,7 +4,7 @@ from pypj.environment import Version
 from pypj.file_path import PypjFilePath
 from pypj.setting import PackageName, PypjSetting
 from pypj.task.pyproject import Pyproject
-from tests.conftest import prepare_dir, validate_toml
+from tests.conftest import does_contain_specific_words, prepare_dir, validate_toml
 
 
 def test_pyproject() -> None:
@@ -20,3 +20,6 @@ def test_pyproject() -> None:
     # assert
     assert pyproject.exists()
     assert validate_toml(pyproject)
+    with pyproject.open(mode="r") as f:
+        content = f.read()
+    assert not does_contain_specific_words(content)
