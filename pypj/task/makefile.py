@@ -14,7 +14,7 @@ class Makefile(Task):
         print("Task: Create makefile")
         self.done_check()
         makefile_path = "Makefile_precommit" if self.setting.precommit else "Makefile"
-        makefile = get_my_resource(makefile_path)
+        makefile = get_my_resource(makefile_path).replace("PACKAGE_SRC_DIR", self.setting.src_dir)
         with self.path.makefile.open(mode="w") as f:
             f.write(makefile)
         print(f"{INDENT}Create : Makefile {Emoji.OK}")

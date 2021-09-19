@@ -18,7 +18,7 @@ run:
 	poetry run ${PACKAGE}
 
 debug:
-	poetry run pytest ./tests -s -v --cov=pypj --cov-branch --durations=0
+	poetry run pytest ./tests -s -v --cov=PACKAGE_SRC_DIR --cov-branch --durations=0
 
 test:
 	poetry run tox
