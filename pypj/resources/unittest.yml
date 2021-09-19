@@ -32,7 +32,7 @@ jobs:
         run: poetry install
 
       - name: Unit test
-        run: poetry run pytest ./tests -v --cov=pypj --cov-branch --cov-report=xml
+        run: poetry run pytest ./tests -v --cov=PACKAGE_SRC_DIR --cov-branch --cov-report=xml
 
       - name: Test with linter
         run: poetry run pflake8 --statistics ./PACKAGE_SRC_DIR ./tests
