@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pypj"
-version = "1.1.0"
+version = "1.1.1"
 description = "Python project initializer"
 authors = ["edge-minato <edge.minato@gmail.com>"]
 license = "MIT"
@@ -38,6 +38,9 @@ toml = "^0.10.2"
 pre-commit = "^2.15.0"
 flake8-bugbear = "^21.9.1"
 types-attrs = "^19.1.0"
+pytest-sugar = "^0.9.4"
+pytest-picked = "^0.4.6"
+pytest-watch = "^4.2.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

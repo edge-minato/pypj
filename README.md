@@ -8,6 +8,7 @@
 [![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black")
 [![Downloads](https://pepy.tech/badge/pypj)](https://pepy.tech/project/pypj)
 [![Downloads](https://pepy.tech/badge/pypj/week)](https://pepy.tech/project/pypj)
+<a href="https://www.buymeacoffee.com/edgem" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 27px !important;width: 104px !important;" ></a>
 
 `pypj` provides you a modern python project template. All the basic dev package installations, their configurations, and test workflows will be done, so you can focus on coding.
 
