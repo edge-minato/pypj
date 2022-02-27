@@ -96,4 +96,4 @@ def test_confirm_proceed(mocker: MockerFixture) -> None:
     mocker.patch("builtins.input", return_value="N")
     with pytest.raises(SystemExit) as e:
         cui.confirm_proceed()
-        assert e.value.code == 0  # type: ignore
+    assert e.value.code == 0  # type: ignore

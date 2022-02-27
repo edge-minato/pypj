@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pypj"
-version = "1.0.2"
+version = "1.0.3"
 description = "Python project initializer"
 authors = ["edge-minato <edge.minato@gmail.com>"]
 license = "MIT"
@@ -84,7 +84,7 @@ line_length = 119
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py37, py38, py39, flake8, black, mypy, isort
+envlist = py37, py38, py39, py310, flake8, black, mypy, isort
 skipsdist = true
 isolated_build = true
 skip_missing_interpreters = true

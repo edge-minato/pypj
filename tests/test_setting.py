@@ -40,7 +40,7 @@ def test_package_dir_validation() -> None:
     # if already exists
     with pytest.raises(SystemExit) as e:
         PypjSetting(VER, PackageName("tmp"))  # tmp dir already exists
-        assert e.value.code == 1  # type: ignore
+    assert e.value.code == 1  # type: ignore
     # if not already exists
     assert PypjSetting(VER, PackageName("abc123"))
 

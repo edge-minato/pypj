@@ -7,14 +7,18 @@ from pypj import Environment, Platform, Version
 def test_Environment(mocker: MockerFixture) -> None:
     env = Environment()
     assert env.python.major == "3"
-    mocker.patch("platform.system", return_value="Others")
+
+    mocker.patch("pypj.environment.platform.system", return_value="Others")
     mocker.patch("builtins.input", return_value="N")
     with pytest.raises(SystemExit) as e:
-        env = Environment()
-        assert env.os == Platform.OTHERS
-        assert env.poetry is not None
-        assert env.python.major == "3"
-        assert e.value.code == 0
+        _ = Environment()
+    assert e.value.code == 0
+
+    mocker.patch("builtins.input", return_value="Y")
+    env3 = Environment()
+    assert env3.os == Platform.OTHERS
+    assert env3.poetry is not None
+    assert env3.python.major == "3"
 
 
 def test_Version() -> None:
@@ -49,7 +53,7 @@ def test_no_poetry_found(mocker: MockerFixture) -> None:
     mocker.patch("shutil.which", return_value=None)
     with pytest.raises(SystemExit) as e:
         Environment()
-        assert e.value.code == 1  # type: ignore
+    assert e.value.code == 1  # type: ignore
 
 
 def test_Plarform() -> None:
