@@ -12,4 +12,4 @@ def test_args(mocker: MockFixture) -> None:
     mocker.patch("argparse.ArgumentParser.parse_args", return_value=MockArgParser())
     with pytest.raises(SystemExit) as e:
         args()
-        assert e.value.code == 0  # type: ignore
+    assert e.value.code == 0  # type: ignore
