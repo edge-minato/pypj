@@ -20,13 +20,16 @@ run:
 	poetry run ${PACKAGE}
 
 debug:
-	poetry run pytest ./tests -s -v --cov=pypj --cov-branch --durations=0
+	poetry run pytest ./tests -s -v -x --cov=pypj --cov-branch --durations=0 -l
 
 test:
 	poetry run tox
 
+quickcheck:
+	poetry run pytest ./tests -x --picked -l
+
 unittest:
-	poetry run tox -e py37,py38,py39
+	poetry run tox -e py37,py38,py39,py310
 
 style:
 	poetry run tox -e black,flake8,mypy,isort
