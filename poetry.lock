@@ -458,14 +458,14 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "single-source"
-version = "0.2.0"
+version = "0.3.0"
 description = "Access to the project version in Python code for PEP 621-style projects"
 category = "main"
 optional = false
 python-versions = ">=3.6,<4.0"
 
 [package.dependencies]
-importlib_metadata = {version = ">=3.0,<4.0", markers = "python_version < \"3.8\""}
+importlib_metadata = {version = ">=3.0,<5", markers = "python_version < \"3.8\""}
 
 [[package]]
 name = "six"
@@ -606,7 +606,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "2e225343783456bce6c500909a76b7309285f140d8a07818924fe9df2ebce93b"
+content-hash = "973bf6489983d22b6f885354b37a63c729f7d78816891223f250ea0445c15d5b"
 
 [metadata.files]
 atomicwrites = [
@@ -871,8 +871,8 @@ pyyaml = [
     {file = "PyYAML-6.0.tar.gz", hash = "sha256:68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2"},
 ]
 single-source = [
-    {file = "single-source-0.2.0.tar.gz", hash = "sha256:f40f94c7f2e72c854b9c0c6f7d6b545d74ada9ebd454f9f07f8fb743b22bccf5"},
-    {file = "single_source-0.2.0-py3-none-any.whl", hash = "sha256:82c55b00515a30c8f7c262b986a399ca023911ebb6a86f0953d4c50448c36b16"},
+    {file = "single-source-0.3.0.tar.gz", hash = "sha256:b12705af958ca99d56ea9ce40bd9cc749378f4fe7ad03b1f9067e29daceef27d"},
+    {file = "single_source-0.3.0-py3-none-any.whl", hash = "sha256:7bc87168ced50f638b6ab0cda4cc1ce9e80ee0e1220014397050d336d021a597"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},

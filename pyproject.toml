@@ -21,7 +21,7 @@ classifiers = [
 ]
 [tool.poetry.dependencies]
 python = "^3.7"
-single-source = "^0.2.0"
+single-source = ">=0.2,<0.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7"
