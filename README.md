@@ -281,4 +281,9 @@ style:
 ## FAQ
 
 * Is there any restrictions regarding the package naming?
-  * -> A name of python package is defined at [PEP-008 #Package and Module Names](https://www.python.org/dev/peps/pep-0008/#package-and-module-names) and it can be expressed as regex: `/^[a-zA-Z][0-9a-zA-Z\-_]*/`. `pypj` follows this rule.
+  * A name of python package is defined at [PEP-008 #Package and Module Names](https://www.python.org/dev/peps/pep-0008/#package-and-module-names) and it can be expressed as regex: `/^[a-zA-Z][0-9a-zA-Z\-_]*/`. `pypj` follows this rule.
+* Can I use current git initialized directory as a package root?
+  * NO. Instead of that, you can initialize the generated package directory with git.
+    1. `git init`
+    2. `git remote add origin https://github.com/USER/my-repository.git`
+    3. `git push -u origin main`
