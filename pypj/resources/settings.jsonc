@@ -36,6 +36,7 @@
     ".mypy_cache": true,
     ".pytest_cache": true,
     ".tox": false,
-    ".venv": false
+    ".venv": false,
+    "**/__pycache__": true
   }
 }
