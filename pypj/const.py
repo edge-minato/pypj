@@ -1,9 +1,6 @@
 from enum import Enum
-from pathlib import Path
 
-from single_source import get_version
-
-VERSION = get_version(__package__, Path(__file__).parent.parent)
+from pypj import VERSION
 
 AUTHOR = "edge-minato"
 GITHUB_URL = "https://github.com/edge-minato/pypj"
