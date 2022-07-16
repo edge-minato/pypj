@@ -25,7 +25,6 @@ single-source = "^0.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7"
-black = "^21.7b0"
 pyproject-flake8 = "^0.0.1-alpha.2"
 mypy = "^0.910"
 isort = "^5.9.3"
@@ -41,6 +40,7 @@ types-attrs = "^19.1.0"
 pytest-sugar = "^0.9.4"
 pytest-picked = "^0.4.6"
 pytest-watch = "^4.2.0"
+black = "^22.6.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
