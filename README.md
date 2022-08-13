@@ -271,11 +271,10 @@ style:
 
 ## Supported python versions
 
-- Supported: `3.7`, `3.8`, `3.9`
-- Is going to be supported: `3.10`
+- Supported: `3.7`, `3.8`, `3.9`, `3.10`
 - Not supported: `3.6` or less
 
-**NOTE**: According to [Status of Python branches](https://devguide.python.org/#status-of-python-branches), the EoL of Python 3.6 is `2021-12-23`.
+**NOTE**: According to [Status of Python branches](https://devguide.python.org/versions/#versions), the EoL of Python 3.6 is `2021-12-23`.
 
 
 ## FAQ
