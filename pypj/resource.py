@@ -1,7 +1,7 @@
 import pkgutil
 from pathlib import Path
 
-from .exception import Emsg, PypjError
+from pypj.exception import Emsg, PypjError
 
 
 def get_resource(package_name: str, resource_file: Path) -> str:

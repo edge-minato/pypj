@@ -9,8 +9,8 @@ from enum import Enum, auto
 from subprocess import PIPE, run
 from typing import Optional
 
-from .const import POETRY_INSTALL_GUIDE
-from .cui import ask_yN
+from pypj.const import POETRY_INSTALL_GUIDE
+from pypj.cui import ask_yN
 
 
 @dataclass

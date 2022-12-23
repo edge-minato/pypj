@@ -1,11 +1,11 @@
 from os import chdir
 from subprocess import PIPE, CompletedProcess, run
 
-from ..const import INDENT, Emoji
-from ..file_path import PypjFilePath
-from ..resource import get_my_resource
-from ..setting import PypjSetting
-from .task import Task, TaskError
+from pypj.const import INDENT, Emoji
+from pypj.file_path import PypjFilePath
+from pypj.resource import get_my_resource
+from pypj.setting import PypjSetting
+from pypj.task.task import Task, TaskError
 
 
 class Poetry(Task):

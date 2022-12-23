@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from .const import HELP
+from pypj.const import HELP
 
 
 def args() -> None:

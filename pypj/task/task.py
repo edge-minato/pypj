@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from enum import Enum, auto
 
-from ..file_path import PypjFilePath
-from ..setting import PypjSetting
+from pypj.file_path import PypjFilePath
+from pypj.setting import PypjSetting
 
 
 class TaskError(Exception):
