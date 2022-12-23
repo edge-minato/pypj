@@ -14,7 +14,7 @@ class Readme(Task):
         print("Task: Create README.md")
         self.done_check()
         # delete README.rst
-        self.path.readme_rst.unlink()
+        self.path.readme_rst.unlink(missing_ok=True)
         # write README.md
         readme = get_my_resource("README.md")
         with self.path.readme_md.open(mode="w") as f:
