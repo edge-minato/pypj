@@ -1,7 +1,7 @@
-from ..const import INDENT, Emoji
-from ..file_path import PypjFilePath
-from ..setting import BLACK_SETTING, FLAKE8_SETTING, ISORT_SETTING, MYPY_SETTING, TOX_SETTING, PypjSetting
-from .task import Task
+from pypj.const import INDENT, Emoji
+from pypj.file_path import PypjFilePath
+from pypj.setting import BLACK_SETTING, FLAKE8_SETTING, ISORT_SETTING, MYPY_SETTING, TOX_SETTING, PypjSetting
+from pypj.task.task import Task
 
 
 class Pyproject(Task):
