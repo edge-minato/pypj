@@ -33,7 +33,6 @@ def test_githubactions() -> None:
     assert validate_yaml(publish)
     with unittest.open(mode="r") as f:
         content = f.read()
-    print(content)
     assert PACKAGE in content
     assert "PACKAGE_SRC_DIR" not in content
     assert not does_contain_specific_words(content)
