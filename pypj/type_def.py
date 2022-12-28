@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import List, Tuple
 
 
 class Eenum(Enum):
@@ -33,3 +34,6 @@ class Plugin(Eenum):
     PYTEST_COV = "pytest-cov"
     PYTEST_MOCK = "pytest-mock"
     TOX_GH_ACTIONS = "tox-gh-actions"
+
+
+ReplaceWords = List[Tuple[str, str]]

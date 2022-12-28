@@ -20,7 +20,7 @@ def test_default() -> None:
 def test_customize(mocker: MockFixture) -> None:
     PACKAGE = PackageName("dummy_package")
     setting = PypjSetting(Version("0.0.0"), PACKAGE)
-    setting.guthub_actions = False
+    setting.github_actions = False
     setting.vscode = False
     setting.precommit = False
     setting.makefile = False

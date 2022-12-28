@@ -3,6 +3,7 @@ from pypj.file_path import PypjFilePath
 from pypj.resource import get_my_resource
 from pypj.setting import PypjSetting
 from pypj.task.task import Task
+from pypj.utils import setValue
 
 
 class GithubActions(Task):
@@ -12,24 +13,11 @@ class GithubActions(Task):
 
     def execute(self) -> None:
         print("Task: Create github actions")
-        self.done_check()
         # prepare directory
         self.path.github_dir.mkdir()
         self.path.github_workflow_dir.mkdir()
         # write workflows *.yml
-        unittest = get_my_resource("unittest.yml")
-        unittest = unittest.replace("PYTHON_VERSION", self.setting.python_version.short)
-        unittest = unittest.replace("PACKAGE_SRC_DIR", self.setting.src_dir)
-        publish = get_my_resource("publish.yml")
-        publish = publish.replace("PYTHON_VERSION", self.setting.python_version.short)
-        dependabot = get_my_resource("dependabot.yml")
-        with self.path.wf_unittest.open(mode="w") as f:
-            f.write(unittest)
-        print(f"{INDENT}Create : unittest.yml {Emoji.OK}")
-        with self.path.wf_publish.open(mode="w") as f:
-            f.write(publish)
-        print(f"{INDENT}Create : publish.yml {Emoji.OK}")
-        with self.path.dependabot.open(mode="w") as f:
-            f.write(dependabot)
-        print(f"{INDENT}Create : dependabot.yml {Emoji.OK}")
-        self.done()
+        for file in (self.path.wf_unittest, self.path.wf_publish, self.path.dependabot):
+            with file.open(mode="w") as f:
+                f.write(setValue(self.setting.replace_words, get_my_resource(file.name)))
+            print(f"{INDENT}Create : {file.name} {Emoji.OK}")

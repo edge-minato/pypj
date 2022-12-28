@@ -40,7 +40,7 @@ class TaskManager:
 
     def reflect_setting_to_tasks(self) -> None:
         s = self.setting
-        self.add(Tasks.GITHUB_ACTIONS) if s.guthub_actions else None
+        self.add(Tasks.GITHUB_ACTIONS) if s.github_actions else None
         self.add(Tasks.VSCODE) if s.vscode else None
         self.add(Tasks.MAKEFILE) if s.makefile else None
         self.add(Tasks.PRE_COMMIT) if self.setting.precommit else None

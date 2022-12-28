@@ -3,6 +3,7 @@ from pypj.file_path import PypjFilePath
 from pypj.resource import get_my_resource
 from pypj.setting import PypjSetting
 from pypj.task.task import Task
+from pypj.utils import setValue
 
 
 class Makefile(Task):
@@ -12,10 +13,7 @@ class Makefile(Task):
 
     def execute(self) -> None:
         print("Task: Create makefile")
-        self.done_check()
         makefile_path = "Makefile_precommit" if self.setting.precommit else "Makefile"
-        makefile = get_my_resource(makefile_path).replace("PACKAGE_SRC_DIR", self.setting.src_dir)
         with self.path.makefile.open(mode="w") as f:
-            f.write(makefile)
+            f.write(setValue(self.setting.replace_words, get_my_resource(makefile_path)))
         print(f"{INDENT}Create : Makefile {Emoji.OK}")
-        self.done()

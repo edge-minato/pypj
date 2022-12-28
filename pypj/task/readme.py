@@ -12,12 +12,7 @@ class Readme(Task):
 
     def execute(self) -> None:
         print("Task: Create README.md")
-        self.done_check()
-        # delete README.rst
-        self.path.readme_rst.unlink(missing_ok=True)
         # write README.md
-        readme = get_my_resource("README.md")
         with self.path.readme_md.open(mode="w") as f:
-            f.write(readme)
+            f.write(get_my_resource("README.md"))
         print(f"{INDENT}Create : README.md {Emoji.OK}")
-        self.done()

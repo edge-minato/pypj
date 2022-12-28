@@ -13,6 +13,7 @@ def test_makefile() -> None:
     package_dir = prepare_dir(PACKAGE)
     # execute
     setting = PypjSetting(Version("0.0.0"), PACKAGE)
+    setting.set_replace_words()
     filepath = PypjFilePath(Path().cwd().joinpath("tmp"), setting)
     Makefile(setting, filepath).execute()
     # assert
@@ -33,6 +34,7 @@ def test_makefile_wo_precommit() -> None:
     # execute
     setting = PypjSetting(Version("0.0.0"), PACKAGE)
     setting.precommit = False
+    setting.set_replace_words()
     filepath = PypjFilePath(Path().cwd().joinpath("tmp"), setting)
     Makefile(setting, filepath).execute()
     # assert

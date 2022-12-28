@@ -62,7 +62,7 @@ def test_default(mocker: MockerFixture) -> None:
     assert setting.max_line_length == 119
     assert setting.use_src is False
     assert setting.venv_in_pj is True
-    assert setting.guthub_actions is True
+    assert setting.github_actions is True
     assert setting.vscode is True
     assert setting.precommit is True
     assert setting.makefile is True
@@ -85,7 +85,7 @@ def test_customize(mocker: MockerFixture) -> None:
     assert setting.max_line_length == 999
     assert setting.use_src is True
     assert setting.venv_in_pj is False
-    assert setting.guthub_actions is False
+    assert setting.github_actions is False
     assert setting.vscode is False
     assert setting.precommit is False
     assert setting.makefile is False

@@ -3,6 +3,7 @@ from pypj.file_path import PypjFilePath
 from pypj.resource import get_my_resource
 from pypj.setting import PypjSetting
 from pypj.task.task import Task
+from pypj.utils import setValue
 
 
 class Vscode(Task):
@@ -12,14 +13,9 @@ class Vscode(Task):
 
     def execute(self) -> None:
         print("Task: Configure vscode settings")
-        self.done_check()
-        # get settings
-        settings_jsonc = get_my_resource("settings.jsonc")
-        settings_jsonc = settings_jsonc.replace("PACKAGE_NAME", self.setting.package_name)
         # mkdir .vscode
         self.path.vscode_dir.mkdir()
         # write settings
         with self.path.vscode_settings_json.open(mode="w") as f:
-            f.write(settings_jsonc)
+            f.write(setValue(self.setting.replace_words, get_my_resource("settings.json")))
         print(f"{INDENT}Create : .vscode/settings.json {Emoji.OK}")
-        self.done()

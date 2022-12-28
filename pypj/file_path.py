@@ -17,7 +17,6 @@ class PypjFilePath(object):
         self.vscode_settings_json: Path = self.vscode_dir.joinpath("settings.json")
         self.makefile: Path = PD.joinpath("Makefile")
         self.readme_md: Path = PD.joinpath("README.md")
-        self.readme_rst: Path = PD.joinpath("README.rst")
         self.github_dir: Path = PD.joinpath(".github")
         self.github_workflow_dir: Path = self.github_dir.joinpath("workflows")
         self.wf_unittest: Path = self.github_workflow_dir.joinpath("unittest.yml")
