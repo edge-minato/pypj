@@ -89,6 +89,7 @@ Are you sure? (Y/n): y
 
 - `python3`
 - `poetry` [[Installation guide](https://python-poetry.org/docs/#installation)]
+  - As of now version `1.3.0` or later is supported
 
 ## Installation
 

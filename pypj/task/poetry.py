@@ -37,11 +37,24 @@ class Poetry(Task):
         print(f"\r{INDENT}Command: {cmd} {status}", flush=True)
         return r
 
+    def __replace_python_version(self) -> None:
+        current = f'python = "^{self.setting.python_version.short}"'
+        new = f'python = "^{self.setting.python_version.version}"'
+
+        with self.path.pyproject.open("r") as f:
+            content = str(f.read())
+        if current not in content:
+            print(content)
+            raise TaskError(f"Failed to find '{current}' in pyproject.toml")
+        with self.path.pyproject.open("w") as f:
+            f.write(content.replace(current, new))
+
     def __new(self) -> None:
         # poetry new
         r = self.__command(self.poetry_new_cmd)
         if r.returncode != 0:
             raise TaskError(f"Failed to '{self.poetry_new_cmd}'")
+        self.__replace_python_version()
         print(f"{INDENT}Poetry new done {Emoji.LETS_GO}")
 
     def __configure_poetry(self) -> None:
