@@ -1,16 +1,16 @@
 from enum import Enum
 from typing import List
 
-from ..const import Emoji
-from ..file_path import PypjFilePath
-from ..setting import PypjSetting
-from .githubactions import GithubActions
-from .makefile import Makefile
-from .precommit import PreCommit
-from .pyproject import Pyproject
-from .readme import Readme
-from .task import Task
-from .vscode import Vscode
+from pypj.const import Emoji
+from pypj.file_path import PypjFilePath
+from pypj.setting import PypjSetting
+from pypj.task.githubactions import GithubActions
+from pypj.task.makefile import Makefile
+from pypj.task.precommit import PreCommit
+from pypj.task.pyproject import Pyproject
+from pypj.task.readme import Readme
+from pypj.task.task import Task
+from pypj.task.vscode import Vscode
 
 
 class Tasks(Enum):

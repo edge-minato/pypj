@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from .setting import PypjSetting
+from pypj.setting import PypjSetting
 
 
 class PypjFilePath(object):
