@@ -24,7 +24,7 @@ single-source = ">=0.2,<0.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7"
-pyproject-flake8 = "^0.0.1a5"
+pyproject-flake8 = "^5.0.4"
 mypy = "^0.971"
 isort = "^5.9.3"
 pytest-cov = "^3.0.0"
