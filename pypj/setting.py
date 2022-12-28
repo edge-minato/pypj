@@ -9,7 +9,7 @@ from typing import List
 from pypj.cui import ask_with_default_num, ask_Yn, ask_yN
 from pypj.environment import Version
 from pypj.exception import Emsg, PypjError
-from pypj.type_def import Formatter, ImportSorter, Linter, Plugin, TestFramework, TypeChecker
+from pypj.type_def import Formatter, ImportSorter, Linter, Plugin, ReplaceWords, TestFramework, TypeChecker
 
 
 class PackageName(str):
@@ -37,7 +37,7 @@ class PypjSetting(object):
     # use or not
     use_src: bool = False
     venv_in_pj: bool = True
-    guthub_actions: bool = True
+    github_actions: bool = True
     vscode: bool = True
     makefile: bool = True
     precommit: bool = True
@@ -56,6 +56,8 @@ class PypjSetting(object):
             Plugin.TOX_GH_ACTIONS,
         ]
     )
+    # resources
+    replace_words: ReplaceWords = field(default_factory=list)
 
     def __post_init__(self) -> None:
         self.validate_package_dir()
@@ -66,10 +68,17 @@ class PypjSetting(object):
         self.use_src = ask_yN("Use src directory")
         self.src_dir = "src" if self.use_src else self.package_name
         self.venv_in_pj = ask_Yn("Keep venv in project")
-        self.guthub_actions = ask_Yn("Use github workflows")
+        self.github_actions = ask_Yn("Use github workflows")
         self.vscode = ask_Yn("Use vscode settings")
         self.precommit = ask_Yn("Use pre-commit")
         self.makefile = ask_Yn("Use command alias as Makefile")
+
+    def set_replace_words(self) -> None:
+        self.replace_words = [
+            ("PACKAGE_NAME", self.package_name),
+            ("PACKAGE_SRC_DIR", self.src_dir),
+            ("PYTHON_VERSION", self.python_version.short),
+        ]
 
     def validate_package_dir(self) -> None:
         if Path().cwd().joinpath(str(self.package_name)).exists():

@@ -12,9 +12,7 @@ class PreCommit(Task):
 
     def execute(self) -> None:
         print("Task: Configure pre-commit ")
-        self.done_check()
         precommit = get_my_resource(".pre-commit-config.yaml")
         with self.path.precommit.open(mode="w") as f:
             f.write(precommit)
         print(f"{INDENT}Create : .pre-commit-config.yaml {Emoji.OK}")
-        self.done()

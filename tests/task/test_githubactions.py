@@ -13,6 +13,7 @@ def test_githubactions() -> None:
     package_dir = prepare_dir(PACKAGE)
     # execute
     setting = PypjSetting(Version("0.0.0"), PACKAGE)
+    setting.set_replace_words()
     filepath = PypjFilePath(Path().cwd().joinpath("tmp"), setting)
     GithubActions(setting, filepath).execute()
     # assert

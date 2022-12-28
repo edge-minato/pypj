@@ -11,7 +11,6 @@ class Pyproject(Task):
 
     def execute(self) -> None:
         print("Task: Configure pyproject.toml settings")
-        self.done_check()
         mll = self.setting.max_line_length
         pv = self.setting.python_version.short
         fmt = self.setting.formatter
@@ -24,4 +23,3 @@ class Pyproject(Task):
             package_dir = "src" if self.setting.use_src else self.setting.package_name
             f.write(TOX_SETTING.replace("PY3X_VERSION", py3x_version).replace("PACKAGE_DIR", package_dir))
         print(f"{INDENT}Write  : pyproject.toml {Emoji.OK}")
-        self.done()

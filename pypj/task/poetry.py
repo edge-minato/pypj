@@ -20,7 +20,6 @@ class Poetry(Task):
 
     def execute(self) -> None:
         print(f"Task: Initialize package: {self.setting.package_name}")
-        self.done_check()
         self.__new()
         self.__configure_poetry()
         chdir(self.path.package_dir)
@@ -28,7 +27,6 @@ class Poetry(Task):
         self.__add_dependency()
         self.__overwrite_files()
         print(f"{INDENT}Create : {self.setting.package_name} {Emoji.OK}")
-        self.done()
 
     def __command(self, cmd: str) -> CompletedProcess:
         print(f"{INDENT}Command: {cmd} {Emoji.WAIT}", end="", flush=True)
@@ -72,7 +70,7 @@ class Poetry(Task):
                 raise TaskError(f"Failed to add dependency: {cmd}")
 
     def __add_dev_dependency(self) -> None:
-        ADD_CMD = "poetry add -D {}"
+        ADD_CMD = "poetry add --group dev {}"
         dev_packages = [
             self.setting.formatter,
             self.setting.linter,

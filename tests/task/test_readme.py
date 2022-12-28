@@ -19,6 +19,5 @@ def test_readme() -> None:
     filepath = PypjFilePath(Path().cwd().joinpath("tmp"), setting)
     Readme(setting, filepath).execute()
     # assert
-    assert not readme_rst.exists()
     assert readme_md.exists()
     assert readme_md.stat().st_size > 0

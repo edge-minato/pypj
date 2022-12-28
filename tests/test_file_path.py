@@ -31,11 +31,10 @@ def test_pypj_file_path(mocker: MockFixture) -> None:
     assert fp.vscode_settings_json == path("/package/.vscode/settings.json")
     assert fp.makefile == path("/package/Makefile")
     assert fp.readme_md == path("/package/README.md")
-    assert fp.readme_rst == path("/package/README.rst")
     assert fp.github_dir == path("/package/.github")
     assert fp.github_workflow_dir == path("/package/.github/workflows")
     assert fp.wf_unittest == path("/package/.github/workflows/unittest.yml")
     assert fp.wf_publish == path("/package/.github/workflows/publish.yml")
     assert fp.dependabot == path("/package/.github/dependabot.yml")
     assert fp.precommit == path("/package/.pre-commit-config.yaml")
-    assert len(vars(fp)) == 17  # to check additional fields
+    assert len(vars(fp)) == 16  # to check additional fields
