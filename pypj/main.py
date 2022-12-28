@@ -3,15 +3,14 @@ import sys
 from pathlib import Path
 from traceback import format_exc
 
+from pypj.args import args
+from pypj.const import ASCII_ART, GITHUB_URL
 from pypj.cui import ask_no_empty, ask_yN, confirm_proceed
-
-from .args import args
-from .const import ASCII_ART, GITHUB_URL
-from .environment import Environment
-from .exception import PypjError
-from .file_path import PypjFilePath
-from .setting import PackageName, PypjSetting
-from .task import Poetry, TaskManager
+from pypj.environment import Environment
+from pypj.exception import PypjError
+from pypj.file_path import PypjFilePath
+from pypj.setting import PackageName, PypjSetting
+from pypj.task import Poetry, TaskManager
 
 
 def ask_package_name() -> PackageName:

@@ -6,10 +6,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List
 
-from .cui import ask_with_default_num, ask_Yn, ask_yN
-from .environment import Version
-from .exception import Emsg, PypjError
-from .type_def import Formatter, ImportSorter, Linter, Plugin, TestFramework, TypeChecker
+from pypj.cui import ask_with_default_num, ask_Yn, ask_yN
+from pypj.environment import Version
+from pypj.exception import Emsg, PypjError
+from pypj.type_def import Formatter, ImportSorter, Linter, Plugin, TestFramework, TypeChecker
 
 
 class PackageName(str):
